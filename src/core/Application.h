@@ -6,6 +6,7 @@
 // Forward declarations to avoid including full headers here
 class Window;
 class VulkanRenderer;
+class Model;
 
 class Application {
 public:
@@ -24,5 +25,6 @@ public:
 private:
     std::unique_ptr<Window> window;
     std::unique_ptr<VulkanRenderer> vulkanRenderer;
+    std::unique_ptr<Model> model;
 };
 

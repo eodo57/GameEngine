@@ -3110,9 +3110,11 @@ CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o: /home/efraino/Documents
   /usr/include/bits/wctype-wchar.h \
   /usr/include/bits/wordsize.h \
   /usr/include/bits/xopen_lim.h \
+  /usr/include/c++/15.2.1/algorithm \
   /usr/include/c++/15.2.1/backward/auto_ptr.h \
   /usr/include/c++/15.2.1/backward/binders.h \
   /usr/include/c++/15.2.1/bit \
+  /usr/include/c++/15.2.1/bits/algorithmfwd.h \
   /usr/include/c++/15.2.1/bits/align.h \
   /usr/include/c++/15.2.1/bits/alloc_traits.h \
   /usr/include/c++/15.2.1/bits/allocated_ptr.h \
@@ -3132,7 +3134,6 @@ CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o: /home/efraino/Documents
   /usr/include/c++/15.2.1/bits/cxxabi_forced.h \
   /usr/include/c++/15.2.1/bits/cxxabi_init_exception.h \
   /usr/include/c++/15.2.1/bits/enable_special_members.h \
-  /usr/include/c++/15.2.1/bits/erase_if.h \
   /usr/include/c++/15.2.1/bits/exception.h \
   /usr/include/c++/15.2.1/bits/exception_defines.h \
   /usr/include/c++/15.2.1/bits/exception_ptr.h \
@@ -3155,7 +3156,6 @@ CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o: /home/efraino/Documents
   /usr/include/c++/15.2.1/bits/move.h \
   /usr/include/c++/15.2.1/bits/nested_exception.h \
   /usr/include/c++/15.2.1/bits/new_allocator.h \
-  /usr/include/c++/15.2.1/bits/node_handle.h \
   /usr/include/c++/15.2.1/bits/ostream.h \
   /usr/include/c++/15.2.1/bits/ostream.tcc \
   /usr/include/c++/15.2.1/bits/ostream_insert.h \
@@ -3163,6 +3163,7 @@ CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o: /home/efraino/Documents
   /usr/include/c++/15.2.1/bits/predefined_ops.h \
   /usr/include/c++/15.2.1/bits/ptr_traits.h \
   /usr/include/c++/15.2.1/bits/range_access.h \
+  /usr/include/c++/15.2.1/bits/ranges_algo.h \
   /usr/include/c++/15.2.1/bits/ranges_algobase.h \
   /usr/include/c++/15.2.1/bits/ranges_base.h \
   /usr/include/c++/15.2.1/bits/ranges_cmp.h \
@@ -3177,25 +3178,25 @@ CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o: /home/efraino/Documents
   /usr/include/c++/15.2.1/bits/sstream.tcc \
   /usr/include/c++/15.2.1/bits/std_abs.h \
   /usr/include/c++/15.2.1/bits/std_mutex.h \
+  /usr/include/c++/15.2.1/bits/stl_algo.h \
   /usr/include/c++/15.2.1/bits/stl_algobase.h \
   /usr/include/c++/15.2.1/bits/stl_bvector.h \
   /usr/include/c++/15.2.1/bits/stl_construct.h \
   /usr/include/c++/15.2.1/bits/stl_function.h \
+  /usr/include/c++/15.2.1/bits/stl_heap.h \
   /usr/include/c++/15.2.1/bits/stl_iterator.h \
   /usr/include/c++/15.2.1/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/15.2.1/bits/stl_iterator_base_types.h \
-  /usr/include/c++/15.2.1/bits/stl_multiset.h \
   /usr/include/c++/15.2.1/bits/stl_pair.h \
   /usr/include/c++/15.2.1/bits/stl_raw_storage_iter.h \
-  /usr/include/c++/15.2.1/bits/stl_set.h \
   /usr/include/c++/15.2.1/bits/stl_tempbuf.h \
-  /usr/include/c++/15.2.1/bits/stl_tree.h \
   /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
   /usr/include/c++/15.2.1/bits/stl_vector.h \
   /usr/include/c++/15.2.1/bits/streambuf.tcc \
   /usr/include/c++/15.2.1/bits/streambuf_iterator.h \
   /usr/include/c++/15.2.1/bits/string_view.tcc \
   /usr/include/c++/15.2.1/bits/stringfwd.h \
+  /usr/include/c++/15.2.1/bits/uniform_int_dist.h \
   /usr/include/c++/15.2.1/bits/unique_ptr.h \
   /usr/include/c++/15.2.1/bits/uses_allocator.h \
   /usr/include/c++/15.2.1/bits/uses_allocator_args.h \
@@ -3240,9 +3241,9 @@ CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o: /home/efraino/Documents
   /usr/include/c++/15.2.1/optional \
   /usr/include/c++/15.2.1/ostream \
   /usr/include/c++/15.2.1/pstl/execution_defs.h \
+  /usr/include/c++/15.2.1/pstl/glue_algorithm_defs.h \
   /usr/include/c++/15.2.1/pstl/glue_memory_defs.h \
   /usr/include/c++/15.2.1/pstl/pstl_config.h \
-  /usr/include/c++/15.2.1/set \
   /usr/include/c++/15.2.1/sstream \
   /usr/include/c++/15.2.1/stdexcept \
   /usr/include/c++/15.2.1/streambuf \
@@ -4239,12 +4240,14 @@ engine: /lib/libvulkan.so \
   /usr/lib/libglm.a \
   /usr/lib/libm.so.6 \
   /usr/lib/libmvec.so.1 \
+  /usr/lib/libtinyobjloader.so.2.0.0-rc.13 \
   CMakeFiles/engine.dir/src/core/Application.cpp.o \
   CMakeFiles/engine.dir/src/core/Logger.cpp.o \
   CMakeFiles/engine.dir/src/core/Window.cpp.o \
   CMakeFiles/engine.dir/src/main.cpp.o \
   CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o \
   CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o \
+  CMakeFiles/engine.dir/src/renderer/Model.cpp.o \
   CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o \
   CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o \
   CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o \
@@ -4433,6 +4436,8 @@ CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o:
 /usr/include/c++/15.2.1/bits/stl_iterator_base_funcs.h:
 
 /usr/include/c++/15.2.1/bits/ios_base.h:
+
+CMakeFiles/engine.dir/src/renderer/Model.cpp.o:
 
 /usr/include/c++/15.2.1/backward/binders.h:
 
@@ -4715,6 +4720,8 @@ CMakeFiles/engine.dir/src/main.cpp.o:
 /usr/include/c++/15.2.1/bits/stl_vector.h:
 
 /usr/include/bits/time.h:
+
+/usr/lib/libtinyobjloader.so.2.0.0-rc.13:
 
 /usr/include/c++/15.2.1/cwctype:
 
@@ -5370,11 +5377,11 @@ CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o:
 
 /usr/include/c++/15.2.1/set:
 
-/home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanSwapChain.cpp:
-
 /usr/include/c++/15.2.1/algorithm:
 
 /usr/include/c++/15.2.1/bits/ranges_algo.h:
+
+/home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanSwapChain.cpp:
 
 /usr/include/c++/15.2.1/bits/hashtable_policy.h:
 

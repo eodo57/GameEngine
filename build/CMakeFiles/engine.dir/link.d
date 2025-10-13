@@ -8,12 +8,14 @@ engine: \
   CMakeFiles/engine.dir/src/main.cpp.o \
   CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o \
   CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o \
+  CMakeFiles/engine.dir/src/renderer/Model.cpp.o \
   CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o \
   CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o \
   CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o \
   CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o \
   CMakeFiles/engine.dir/src/scene/GameObject.cpp.o \
   /lib/libvulkan.so \
+  /usr/lib/libtinyobjloader.so.2.0.0-rc.13 \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libdl.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libpthread.a \
   /usr/lib/libglm.a \
@@ -64,6 +66,8 @@ CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o:
 
 CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o:
 
+CMakeFiles/engine.dir/src/renderer/Model.cpp.o:
+
 CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o:
 
 CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o:
@@ -75,6 +79,8 @@ CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o:
 CMakeFiles/engine.dir/src/scene/GameObject.cpp.o:
 
 /lib/libvulkan.so:
+
+/usr/lib/libtinyobjloader.so.2.0.0-rc.13:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libdl.a:
 
