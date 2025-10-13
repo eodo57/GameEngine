@@ -490,11 +490,12 @@ void VulkanRenderer::createSyncObjects() {
 
 
 void VulkanRenderer::drawFrame() {
-    // 1. Wait for the fence of the frame we are about to render
+    // 1. Wait for the fence of the frame resources we are about to use.
+    // This ensures we don't start a new frame until the resources from a previous one are free.
     vkWaitForFences(device, 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
 
     uint32_t imageIndex;
-    // 2. Acquire an image from the swap chain
+    // 2. Acquire an available image from the swap chain.
     VkResult result = vkAcquireNextImageKHR(
         device,
         swapChain,
@@ -503,26 +504,26 @@ void VulkanRenderer::drawFrame() {
         VK_NULL_HANDLE,
         &imageIndex);
 
-    // (Handle window resizing if necessary - you can add this later)
+    // Handle window resizing (can be implemented later)
     if (result == VK_ERROR_OUT_OF_DATE_KHR) {
-        // recreateSwapChain(); // A function you'd write to handle this
+        // recreateSwapChain();
         return;
     } else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
         throw std::runtime_error("failed to acquire swap chain image!");
     }
-    
-    // **THE FIX IS HERE**
-    // 3. Check if a previous frame is using this image (i.e. there is its fence to wait on)
+
+    // 3. Check if a previous frame is using this image. If so, wait for its fence.
     if (imagesInFlight[imageIndex] != VK_NULL_HANDLE) {
         vkWaitForFences(device, 1, &imagesInFlight[imageIndex], VK_TRUE, UINT64_MAX);
     }
-    // Mark the image as now being in use by this frame
+    // Mark the image as now being in use by the current frame's fence.
     imagesInFlight[imageIndex] = inFlightFences[currentFrame];
 
-    // 4. Record the command buffer
+    // 4. We can now safely reset the fence and record the command buffer.
     vkResetFences(device, 1, &inFlightFences[currentFrame]);
     vkResetCommandBuffer(commandBuffers[currentFrame], 0);
 
+    // --- Record Command Buffer ---
     VkCommandBufferBeginInfo beginInfo{};
     beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
 
@@ -542,7 +543,6 @@ void VulkanRenderer::drawFrame() {
     renderPassInfo.pClearValues = &clearColor;
 
     vkCmdBeginRenderPass(commandBuffers[currentFrame], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-
     vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
 
     VkViewport viewport{};
@@ -560,17 +560,16 @@ void VulkanRenderer::drawFrame() {
     vkCmdSetScissor(commandBuffers[currentFrame], 0, 1, &scissor);
 
     vkCmdDraw(commandBuffers[currentFrame], 3, 1, 0, 0);
-
     vkCmdEndRenderPass(commandBuffers[currentFrame]);
 
     if (vkEndCommandBuffer(commandBuffers[currentFrame]) != VK_SUCCESS) {
         throw std::runtime_error("failed to record command buffer!");
     }
-    
-    // 5. Submit the command buffer
+    // --- End Record ---
+
+    // 5. Submit the command buffer to the graphics queue.
     VkSubmitInfo submitInfo{};
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-
     VkSemaphore waitSemaphores[] = {imageAvailableSemaphores[currentFrame]};
     VkPipelineStageFlags waitStages[] = {VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT};
     submitInfo.waitSemaphoreCount = 1;
@@ -578,7 +577,6 @@ void VulkanRenderer::drawFrame() {
     submitInfo.pWaitDstStageMask = waitStages;
     submitInfo.commandBufferCount = 1;
     submitInfo.pCommandBuffers = &commandBuffers[currentFrame];
-
     VkSemaphore signalSemaphores[] = {renderFinishedSemaphores[currentFrame]};
     submitInfo.signalSemaphoreCount = 1;
     submitInfo.pSignalSemaphores = signalSemaphores;
@@ -587,24 +585,25 @@ void VulkanRenderer::drawFrame() {
         throw std::runtime_error("failed to submit draw command buffer!");
     }
 
-    // 6. Present the image to the screen
+    // 6. Present the rendered image to the screen.
     VkPresentInfoKHR presentInfo{};
     presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
     presentInfo.waitSemaphoreCount = 1;
     presentInfo.pWaitSemaphores = signalSemaphores;
-
     VkSwapchainKHR swapChains[] = {swapChain};
     presentInfo.swapchainCount = 1;
     presentInfo.pSwapchains = swapChains;
     presentInfo.pImageIndices = &imageIndex;
 
     result = vkQueuePresentKHR(presentQueue, &presentInfo);
+    
     if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR) {
         // recreateSwapChain();
     } else if (result != VK_SUCCESS) {
         throw std::runtime_error("failed to present swap chain image!");
     }
 
+    // Advance to the next frame index.
     currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
 }
 
