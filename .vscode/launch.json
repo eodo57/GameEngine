@@ -2,14 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Engine (LLDB)",
+            "name": "Debug with LLDB",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}",
+            "program": "${workspaceFolder}/build/engine",
             "args": [],
-            "stopOnEntry": false,
-            "cwd": "${workspaceFolder}",
-            "preLaunchTask": "CMake: Build"
+            "cwd": "${workspaceFolder}/build",
+            "preLaunchTask": "build"
         }
     ]
 }

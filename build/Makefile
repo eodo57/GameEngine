@@ -129,6 +129,78 @@ engine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/build
 .PHONY : engine/fast
 
+src/core/Application.o: src/core/Application.cpp.o
+.PHONY : src/core/Application.o
+
+# target to build an object file
+src/core/Application.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/Application.cpp.o
+.PHONY : src/core/Application.cpp.o
+
+src/core/Application.i: src/core/Application.cpp.i
+.PHONY : src/core/Application.i
+
+# target to preprocess a source file
+src/core/Application.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/Application.cpp.i
+.PHONY : src/core/Application.cpp.i
+
+src/core/Application.s: src/core/Application.cpp.s
+.PHONY : src/core/Application.s
+
+# target to generate assembly for a file
+src/core/Application.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/Application.cpp.s
+.PHONY : src/core/Application.cpp.s
+
+src/core/Logger.o: src/core/Logger.cpp.o
+.PHONY : src/core/Logger.o
+
+# target to build an object file
+src/core/Logger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/Logger.cpp.o
+.PHONY : src/core/Logger.cpp.o
+
+src/core/Logger.i: src/core/Logger.cpp.i
+.PHONY : src/core/Logger.i
+
+# target to preprocess a source file
+src/core/Logger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/Logger.cpp.i
+.PHONY : src/core/Logger.cpp.i
+
+src/core/Logger.s: src/core/Logger.cpp.s
+.PHONY : src/core/Logger.s
+
+# target to generate assembly for a file
+src/core/Logger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/Logger.cpp.s
+.PHONY : src/core/Logger.cpp.s
+
+src/core/Window.o: src/core/Window.cpp.o
+.PHONY : src/core/Window.o
+
+# target to build an object file
+src/core/Window.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/Window.cpp.o
+.PHONY : src/core/Window.cpp.o
+
+src/core/Window.i: src/core/Window.cpp.i
+.PHONY : src/core/Window.i
+
+# target to preprocess a source file
+src/core/Window.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/Window.cpp.i
+.PHONY : src/core/Window.cpp.i
+
+src/core/Window.s: src/core/Window.cpp.s
+.PHONY : src/core/Window.s
+
+# target to generate assembly for a file
+src/core/Window.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/Window.cpp.s
+.PHONY : src/core/Window.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -153,6 +225,174 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/renderer/Cameral.o: src/renderer/Cameral.cpp.o
+.PHONY : src/renderer/Cameral.o
+
+# target to build an object file
+src/renderer/Cameral.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o
+.PHONY : src/renderer/Cameral.cpp.o
+
+src/renderer/Cameral.i: src/renderer/Cameral.cpp.i
+.PHONY : src/renderer/Cameral.i
+
+# target to preprocess a source file
+src/renderer/Cameral.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Cameral.cpp.i
+.PHONY : src/renderer/Cameral.cpp.i
+
+src/renderer/Cameral.s: src/renderer/Cameral.cpp.s
+.PHONY : src/renderer/Cameral.s
+
+# target to generate assembly for a file
+src/renderer/Cameral.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Cameral.cpp.s
+.PHONY : src/renderer/Cameral.cpp.s
+
+src/renderer/Mesh.o: src/renderer/Mesh.cpp.o
+.PHONY : src/renderer/Mesh.o
+
+# target to build an object file
+src/renderer/Mesh.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o
+.PHONY : src/renderer/Mesh.cpp.o
+
+src/renderer/Mesh.i: src/renderer/Mesh.cpp.i
+.PHONY : src/renderer/Mesh.i
+
+# target to preprocess a source file
+src/renderer/Mesh.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Mesh.cpp.i
+.PHONY : src/renderer/Mesh.cpp.i
+
+src/renderer/Mesh.s: src/renderer/Mesh.cpp.s
+.PHONY : src/renderer/Mesh.s
+
+# target to generate assembly for a file
+src/renderer/Mesh.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Mesh.cpp.s
+.PHONY : src/renderer/Mesh.cpp.s
+
+src/renderer/Pipeline.o: src/renderer/Pipeline.cpp.o
+.PHONY : src/renderer/Pipeline.o
+
+# target to build an object file
+src/renderer/Pipeline.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o
+.PHONY : src/renderer/Pipeline.cpp.o
+
+src/renderer/Pipeline.i: src/renderer/Pipeline.cpp.i
+.PHONY : src/renderer/Pipeline.i
+
+# target to preprocess a source file
+src/renderer/Pipeline.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.i
+.PHONY : src/renderer/Pipeline.cpp.i
+
+src/renderer/Pipeline.s: src/renderer/Pipeline.cpp.s
+.PHONY : src/renderer/Pipeline.s
+
+# target to generate assembly for a file
+src/renderer/Pipeline.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.s
+.PHONY : src/renderer/Pipeline.cpp.s
+
+src/renderer/VulkanDevice.o: src/renderer/VulkanDevice.cpp.o
+.PHONY : src/renderer/VulkanDevice.o
+
+# target to build an object file
+src/renderer/VulkanDevice.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o
+.PHONY : src/renderer/VulkanDevice.cpp.o
+
+src/renderer/VulkanDevice.i: src/renderer/VulkanDevice.cpp.i
+.PHONY : src/renderer/VulkanDevice.i
+
+# target to preprocess a source file
+src/renderer/VulkanDevice.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.i
+.PHONY : src/renderer/VulkanDevice.cpp.i
+
+src/renderer/VulkanDevice.s: src/renderer/VulkanDevice.cpp.s
+.PHONY : src/renderer/VulkanDevice.s
+
+# target to generate assembly for a file
+src/renderer/VulkanDevice.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.s
+.PHONY : src/renderer/VulkanDevice.cpp.s
+
+src/renderer/VulkanRenderer.o: src/renderer/VulkanRenderer.cpp.o
+.PHONY : src/renderer/VulkanRenderer.o
+
+# target to build an object file
+src/renderer/VulkanRenderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o
+.PHONY : src/renderer/VulkanRenderer.cpp.o
+
+src/renderer/VulkanRenderer.i: src/renderer/VulkanRenderer.cpp.i
+.PHONY : src/renderer/VulkanRenderer.i
+
+# target to preprocess a source file
+src/renderer/VulkanRenderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.i
+.PHONY : src/renderer/VulkanRenderer.cpp.i
+
+src/renderer/VulkanRenderer.s: src/renderer/VulkanRenderer.cpp.s
+.PHONY : src/renderer/VulkanRenderer.s
+
+# target to generate assembly for a file
+src/renderer/VulkanRenderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.s
+.PHONY : src/renderer/VulkanRenderer.cpp.s
+
+src/renderer/VulkanSwapChain.o: src/renderer/VulkanSwapChain.cpp.o
+.PHONY : src/renderer/VulkanSwapChain.o
+
+# target to build an object file
+src/renderer/VulkanSwapChain.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o
+.PHONY : src/renderer/VulkanSwapChain.cpp.o
+
+src/renderer/VulkanSwapChain.i: src/renderer/VulkanSwapChain.cpp.i
+.PHONY : src/renderer/VulkanSwapChain.i
+
+# target to preprocess a source file
+src/renderer/VulkanSwapChain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.i
+.PHONY : src/renderer/VulkanSwapChain.cpp.i
+
+src/renderer/VulkanSwapChain.s: src/renderer/VulkanSwapChain.cpp.s
+.PHONY : src/renderer/VulkanSwapChain.s
+
+# target to generate assembly for a file
+src/renderer/VulkanSwapChain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.s
+.PHONY : src/renderer/VulkanSwapChain.cpp.s
+
+src/scene/GameObject.o: src/scene/GameObject.cpp.o
+.PHONY : src/scene/GameObject.o
+
+# target to build an object file
+src/scene/GameObject.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/scene/GameObject.cpp.o
+.PHONY : src/scene/GameObject.cpp.o
+
+src/scene/GameObject.i: src/scene/GameObject.cpp.i
+.PHONY : src/scene/GameObject.i
+
+# target to preprocess a source file
+src/scene/GameObject.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/scene/GameObject.cpp.i
+.PHONY : src/scene/GameObject.cpp.i
+
+src/scene/GameObject.s: src/scene/GameObject.cpp.s
+.PHONY : src/scene/GameObject.s
+
+# target to generate assembly for a file
+src/scene/GameObject.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/scene/GameObject.cpp.s
+.PHONY : src/scene/GameObject.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +402,39 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... engine"
+	@echo "... src/core/Application.o"
+	@echo "... src/core/Application.i"
+	@echo "... src/core/Application.s"
+	@echo "... src/core/Logger.o"
+	@echo "... src/core/Logger.i"
+	@echo "... src/core/Logger.s"
+	@echo "... src/core/Window.o"
+	@echo "... src/core/Window.i"
+	@echo "... src/core/Window.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/renderer/Cameral.o"
+	@echo "... src/renderer/Cameral.i"
+	@echo "... src/renderer/Cameral.s"
+	@echo "... src/renderer/Mesh.o"
+	@echo "... src/renderer/Mesh.i"
+	@echo "... src/renderer/Mesh.s"
+	@echo "... src/renderer/Pipeline.o"
+	@echo "... src/renderer/Pipeline.i"
+	@echo "... src/renderer/Pipeline.s"
+	@echo "... src/renderer/VulkanDevice.o"
+	@echo "... src/renderer/VulkanDevice.i"
+	@echo "... src/renderer/VulkanDevice.s"
+	@echo "... src/renderer/VulkanRenderer.o"
+	@echo "... src/renderer/VulkanRenderer.i"
+	@echo "... src/renderer/VulkanRenderer.s"
+	@echo "... src/renderer/VulkanSwapChain.o"
+	@echo "... src/renderer/VulkanSwapChain.i"
+	@echo "... src/renderer/VulkanSwapChain.s"
+	@echo "... src/scene/GameObject.o"
+	@echo "... src/scene/GameObject.i"
+	@echo "... src/scene/GameObject.s"
 .PHONY : help
 
 

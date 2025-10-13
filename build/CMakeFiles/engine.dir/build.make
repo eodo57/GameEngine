@@ -72,10 +72,52 @@ include CMakeFiles/engine.dir/flags.make
 CMakeFiles/engine.dir/codegen:
 .PHONY : CMakeFiles/engine.dir/codegen
 
+CMakeFiles/engine.dir/src/core/Application.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/core/Application.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/core/Application.cpp
+CMakeFiles/engine.dir/src/core/Application.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/engine.dir/src/core/Application.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/core/Application.cpp.o -MF CMakeFiles/engine.dir/src/core/Application.cpp.o.d -o CMakeFiles/engine.dir/src/core/Application.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/core/Application.cpp
+
+CMakeFiles/engine.dir/src/core/Application.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/core/Application.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/efraino/Documents/Projects/GameEngine/src/core/Application.cpp > CMakeFiles/engine.dir/src/core/Application.cpp.i
+
+CMakeFiles/engine.dir/src/core/Application.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/core/Application.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/core/Application.cpp -o CMakeFiles/engine.dir/src/core/Application.cpp.s
+
+CMakeFiles/engine.dir/src/core/Logger.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/core/Logger.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/core/Logger.cpp
+CMakeFiles/engine.dir/src/core/Logger.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/engine.dir/src/core/Logger.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/core/Logger.cpp.o -MF CMakeFiles/engine.dir/src/core/Logger.cpp.o.d -o CMakeFiles/engine.dir/src/core/Logger.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/core/Logger.cpp
+
+CMakeFiles/engine.dir/src/core/Logger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/core/Logger.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/efraino/Documents/Projects/GameEngine/src/core/Logger.cpp > CMakeFiles/engine.dir/src/core/Logger.cpp.i
+
+CMakeFiles/engine.dir/src/core/Logger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/core/Logger.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/core/Logger.cpp -o CMakeFiles/engine.dir/src/core/Logger.cpp.s
+
+CMakeFiles/engine.dir/src/core/Window.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/core/Window.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/core/Window.cpp
+CMakeFiles/engine.dir/src/core/Window.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/engine.dir/src/core/Window.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/core/Window.cpp.o -MF CMakeFiles/engine.dir/src/core/Window.cpp.o.d -o CMakeFiles/engine.dir/src/core/Window.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/core/Window.cpp
+
+CMakeFiles/engine.dir/src/core/Window.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/core/Window.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/efraino/Documents/Projects/GameEngine/src/core/Window.cpp > CMakeFiles/engine.dir/src/core/Window.cpp.i
+
+CMakeFiles/engine.dir/src/core/Window.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/core/Window.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/core/Window.cpp -o CMakeFiles/engine.dir/src/core/Window.cpp.s
+
 CMakeFiles/engine.dir/src/main.cpp.o: CMakeFiles/engine.dir/flags.make
 CMakeFiles/engine.dir/src/main.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/main.cpp
 CMakeFiles/engine.dir/src/main.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/engine.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/engine.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/main.cpp.o -MF CMakeFiles/engine.dir/src/main.cpp.o.d -o CMakeFiles/engine.dir/src/main.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/main.cpp
 
 CMakeFiles/engine.dir/src/main.cpp.i: cmake_force
@@ -86,21 +128,139 @@ CMakeFiles/engine.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/main.cpp -o CMakeFiles/engine.dir/src/main.cpp.s
 
+CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/renderer/Cameral.cpp
+CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o -MF CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o.d -o CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/renderer/Cameral.cpp
+
+CMakeFiles/engine.dir/src/renderer/Cameral.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/renderer/Cameral.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/efraino/Documents/Projects/GameEngine/src/renderer/Cameral.cpp > CMakeFiles/engine.dir/src/renderer/Cameral.cpp.i
+
+CMakeFiles/engine.dir/src/renderer/Cameral.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/renderer/Cameral.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/renderer/Cameral.cpp -o CMakeFiles/engine.dir/src/renderer/Cameral.cpp.s
+
+CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/renderer/Mesh.cpp
+CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o -MF CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o.d -o CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/renderer/Mesh.cpp
+
+CMakeFiles/engine.dir/src/renderer/Mesh.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/renderer/Mesh.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/efraino/Documents/Projects/GameEngine/src/renderer/Mesh.cpp > CMakeFiles/engine.dir/src/renderer/Mesh.cpp.i
+
+CMakeFiles/engine.dir/src/renderer/Mesh.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/renderer/Mesh.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/renderer/Mesh.cpp -o CMakeFiles/engine.dir/src/renderer/Mesh.cpp.s
+
+CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/renderer/Pipeline.cpp
+CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o -MF CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o.d -o CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/renderer/Pipeline.cpp
+
+CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/efraino/Documents/Projects/GameEngine/src/renderer/Pipeline.cpp > CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.i
+
+CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/renderer/Pipeline.cpp -o CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.s
+
+CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanDevice.cpp
+CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o -MF CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o.d -o CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanDevice.cpp
+
+CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanDevice.cpp > CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.i
+
+CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanDevice.cpp -o CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.s
+
+CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanRenderer.cpp
+CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o -MF CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o.d -o CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanRenderer.cpp
+
+CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanRenderer.cpp > CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.i
+
+CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanRenderer.cpp -o CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.s
+
+CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanSwapChain.cpp
+CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o -MF CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o.d -o CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanSwapChain.cpp
+
+CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanSwapChain.cpp > CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.i
+
+CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanSwapChain.cpp -o CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.s
+
+CMakeFiles/engine.dir/src/scene/GameObject.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/scene/GameObject.cpp.o: /home/efraino/Documents/Projects/GameEngine/src/scene/GameObject.cpp
+CMakeFiles/engine.dir/src/scene/GameObject.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/engine.dir/src/scene/GameObject.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/scene/GameObject.cpp.o -MF CMakeFiles/engine.dir/src/scene/GameObject.cpp.o.d -o CMakeFiles/engine.dir/src/scene/GameObject.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/scene/GameObject.cpp
+
+CMakeFiles/engine.dir/src/scene/GameObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/scene/GameObject.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/efraino/Documents/Projects/GameEngine/src/scene/GameObject.cpp > CMakeFiles/engine.dir/src/scene/GameObject.cpp.i
+
+CMakeFiles/engine.dir/src/scene/GameObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/scene/GameObject.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/efraino/Documents/Projects/GameEngine/src/scene/GameObject.cpp -o CMakeFiles/engine.dir/src/scene/GameObject.cpp.s
+
 # Object files for target engine
 engine_OBJECTS = \
-"CMakeFiles/engine.dir/src/main.cpp.o"
+"CMakeFiles/engine.dir/src/core/Application.cpp.o" \
+"CMakeFiles/engine.dir/src/core/Logger.cpp.o" \
+"CMakeFiles/engine.dir/src/core/Window.cpp.o" \
+"CMakeFiles/engine.dir/src/main.cpp.o" \
+"CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o" \
+"CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o" \
+"CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o" \
+"CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o" \
+"CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o" \
+"CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o" \
+"CMakeFiles/engine.dir/src/scene/GameObject.cpp.o"
 
 # External object files for target engine
 engine_EXTERNAL_OBJECTS =
 
+engine: CMakeFiles/engine.dir/src/core/Application.cpp.o
+engine: CMakeFiles/engine.dir/src/core/Logger.cpp.o
+engine: CMakeFiles/engine.dir/src/core/Window.cpp.o
 engine: CMakeFiles/engine.dir/src/main.cpp.o
+engine: CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o
+engine: CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o
+engine: CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o
+engine: CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o
+engine: CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o
+engine: CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o
+engine: CMakeFiles/engine.dir/src/scene/GameObject.cpp.o
 engine: CMakeFiles/engine.dir/build.make
 engine: CMakeFiles/engine.dir/compiler_depend.ts
 engine: /lib/libvulkan.so
 engine: /usr/lib/libglm.a
 engine: /usr/lib/libglfw.so
 engine: CMakeFiles/engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable engine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/engine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -2,7 +2,17 @@ engine: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o \
+  CMakeFiles/engine.dir/src/core/Application.cpp.o \
+  CMakeFiles/engine.dir/src/core/Logger.cpp.o \
+  CMakeFiles/engine.dir/src/core/Window.cpp.o \
   CMakeFiles/engine.dir/src/main.cpp.o \
+  CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o \
+  CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o \
+  CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o \
+  CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o \
+  CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o \
+  CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o \
+  CMakeFiles/engine.dir/src/scene/GameObject.cpp.o \
   /lib/libvulkan.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libdl.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libpthread.a \
@@ -42,7 +52,27 @@ engine: \
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o:
 
+CMakeFiles/engine.dir/src/core/Application.cpp.o:
+
+CMakeFiles/engine.dir/src/core/Logger.cpp.o:
+
+CMakeFiles/engine.dir/src/core/Window.cpp.o:
+
 CMakeFiles/engine.dir/src/main.cpp.o:
+
+CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o:
+
+CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o:
+
+CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o:
+
+CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o:
+
+CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o:
+
+CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o:
+
+CMakeFiles/engine.dir/src/scene/GameObject.cpp.o:
 
 /lib/libvulkan.so:
 
