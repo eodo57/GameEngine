@@ -1,0 +1,10 @@
+{
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "cmake.configureOnOpen": true,
+    "files.associations": {
+        "*.glsl": "glsl",
+        "CMakeLists.txt": "cmake"
+    },
+    "cmake.buildDirectory": "${workspaceFolder}/build",  // Ensures build/ folder
+    "C_Cpp.intelliSenseEngine": "disabled"
+}
