@@ -4,7 +4,7 @@
 #include <cstring> // for memcpy
 #include <vector>
 #include <vulkan/vulkan.h>
-
+#include <cstddef>
 // --- Vertex Struct Implementations ---
 
 std::vector<VkVertexInputBindingDescription> Mesh::Vertex::getBindingDescriptions() {
@@ -15,8 +15,9 @@ std::vector<VkVertexInputBindingDescription> Mesh::Vertex::getBindingDescription
     return bindingDescriptions;
 }
 
+// In src/renderer/Mesh.cpp
 std::vector<VkVertexInputAttributeDescription> Mesh::Vertex::getAttributeDescriptions() {
-    std::vector<VkVertexInputAttributeDescription> attributeDescriptions(2);
+    std::vector<VkVertexInputAttributeDescription> attributeDescriptions(4); // <-- Size is now 4
     // Position
     attributeDescriptions[0].binding = 0;
     attributeDescriptions[0].location = 0;
@@ -28,10 +29,21 @@ std::vector<VkVertexInputAttributeDescription> Mesh::Vertex::getAttributeDescrip
     attributeDescriptions[1].location = 1;
     attributeDescriptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
     attributeDescriptions[1].offset = offsetof(Vertex, color);
-    
+
+    // Normal (NEW)
+    attributeDescriptions[2].binding = 0;
+    attributeDescriptions[2].location = 2;
+    attributeDescriptions[2].format = VK_FORMAT_R32G32B32_SFLOAT;
+    attributeDescriptions[2].offset = offsetof(Vertex, normal);
+
+    // UV (NEW)
+    attributeDescriptions[3].binding = 0;
+    attributeDescriptions[3].location = 3;
+    attributeDescriptions[3].format = VK_FORMAT_R32G32_SFLOAT;
+    attributeDescriptions[3].offset = offsetof(Vertex, uv);
+
     return attributeDescriptions;
 }
-
 
 // --- Mesh Class Implementations ---
 

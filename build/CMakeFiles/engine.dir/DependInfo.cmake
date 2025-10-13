@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/efraino/Documents/Projects/GameEngine/src/main.cpp" "CMakeFiles/engine.dir/src/main.cpp.o" "gcc" "CMakeFiles/engine.dir/src/main.cpp.o.d"
   "/home/efraino/Documents/Projects/GameEngine/src/renderer/Cameral.cpp" "CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o" "gcc" "CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o.d"
   "/home/efraino/Documents/Projects/GameEngine/src/renderer/Mesh.cpp" "CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o" "gcc" "CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o.d"
+  "/home/efraino/Documents/Projects/GameEngine/src/renderer/Model.cpp" "CMakeFiles/engine.dir/src/renderer/Model.cpp.o" "gcc" "CMakeFiles/engine.dir/src/renderer/Model.cpp.o.d"
   "/home/efraino/Documents/Projects/GameEngine/src/renderer/Pipeline.cpp" "CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o" "gcc" "CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o.d"
   "/home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanDevice.cpp" "CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o" "gcc" "CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o.d"
   "/home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanRenderer.cpp" "CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o" "gcc" "CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o.d"

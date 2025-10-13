@@ -273,6 +273,30 @@ src/renderer/Mesh.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Mesh.cpp.s
 .PHONY : src/renderer/Mesh.cpp.s
 
+src/renderer/Model.o: src/renderer/Model.cpp.o
+.PHONY : src/renderer/Model.o
+
+# target to build an object file
+src/renderer/Model.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Model.cpp.o
+.PHONY : src/renderer/Model.cpp.o
+
+src/renderer/Model.i: src/renderer/Model.cpp.i
+.PHONY : src/renderer/Model.i
+
+# target to preprocess a source file
+src/renderer/Model.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Model.cpp.i
+.PHONY : src/renderer/Model.cpp.i
+
+src/renderer/Model.s: src/renderer/Model.cpp.s
+.PHONY : src/renderer/Model.s
+
+# target to generate assembly for a file
+src/renderer/Model.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/renderer/Model.cpp.s
+.PHONY : src/renderer/Model.cpp.s
+
 src/renderer/Pipeline.o: src/renderer/Pipeline.cpp.o
 .PHONY : src/renderer/Pipeline.o
 
@@ -420,6 +444,9 @@ help:
 	@echo "... src/renderer/Mesh.o"
 	@echo "... src/renderer/Mesh.i"
 	@echo "... src/renderer/Mesh.s"
+	@echo "... src/renderer/Model.o"
+	@echo "... src/renderer/Model.i"
+	@echo "... src/renderer/Model.s"
 	@echo "... src/renderer/Pipeline.o"
 	@echo "... src/renderer/Pipeline.i"
 	@echo "... src/renderer/Pipeline.s"

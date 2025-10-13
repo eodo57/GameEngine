@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../renderer/Model.h"
 #include <memory>
 
 // Forward declarations to avoid including full headers here

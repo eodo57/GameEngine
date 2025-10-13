@@ -250,6 +250,9 @@ glm_DIR:PATH=/usr/lib/cmake/glm
 //Path to a library.
 pkgcfg_lib_GLFW_glfw:FILEPATH=/usr/lib/libglfw.so
 
+//The directory containing a CMake configuration file for tinyobjloader.
+tinyobjloader_DIR:PATH=/usr/lib/tinyobjloader/cmake
+
 
 ########################
 # INTERNAL cache entries

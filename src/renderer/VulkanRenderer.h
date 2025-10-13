@@ -2,30 +2,30 @@
 
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
-
+#include "VulkanDevice.h"
 #include <vector>
-#include <optional>
+//#include <optional>
 #include <string>
 
 // We need a forward declaration of the Window class
 class Window;
 
 // Helper struct to hold indices of queue families
-struct QueueFamilyIndices {
+/*struct QueueFamilyIndices {
     std::optional<uint32_t> graphicsFamily;
     std::optional<uint32_t> presentFamily;
 
     bool isComplete() const {
         return graphicsFamily.has_value() && presentFamily.has_value();
     }
-};
+};*/
 
 // Helper struct to hold details about swap chain support
-struct SwapChainSupportDetails {
+/*struct SwapChainSupportDetails {
     VkSurfaceCapabilitiesKHR capabilities;
     std::vector<VkSurfaceFormatKHR> formats;
     std::vector<VkPresentModeKHR> presentModes;
-};
+};*/
 
 class VulkanRenderer {
 public:
@@ -33,12 +33,14 @@ public:
     ~VulkanRenderer();
 
     // No copying or moving
+    // In src/renderer/VulkanRenderer.h
+    VulkanDevice& getDevice() const { return *vulkanDevice; }
     VulkanRenderer(const VulkanRenderer&) = delete;
     VulkanRenderer& operator=(const VulkanRenderer&) = delete;
     VulkanRenderer(VulkanRenderer&&) = delete;
     VulkanRenderer& operator=(VulkanRenderer&&) = delete;
 
-    void drawFrame();
+    void drawFrame(Model& model);
     void waitIdle() const;
 
 private:

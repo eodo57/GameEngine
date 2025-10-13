@@ -7,18 +7,21 @@ set(CMAKE_CXX_STANDARD 20)
 find_package(Vulkan REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(glm REQUIRED)
+find_package(tinyobjloader REQUIRED) # <-- NEW: Find tinyobjloader
+
 pkg_check_modules(GLFW REQUIRED IMPORTED_TARGET glfw3)
 
-# --- (FIX) Automatically find all .cpp files in the src directory ---
+# Automatically find all .cpp files in the src directory
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
-# Executable - now includes all found source files
+# Executable
 add_executable(engine ${SOURCES})
 
 # Link libraries
 target_link_libraries(engine
     Vulkan::Vulkan
-    PkgConfig::GLFW  # Links GLFW + its deps (X11, etc.)
+    PkgConfig::GLFW
+    tinyobjloader::tinyobjloader # <-- NEW: Link tinyobjloader
     dl pthread
 )
 target_link_libraries(engine glm::glm)

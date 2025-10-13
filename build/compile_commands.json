@@ -37,6 +37,12 @@
 },
 {
   "directory": "/home/efraino/Documents/Projects/GameEngine/build",
+  "command": "/usr/bin/c++ -DVK_LAYER_LUNARG_standard_validation=1 -I/home/efraino/Documents/Projects/GameEngine/src/core -g -std=gnu++20 -o CMakeFiles/engine.dir/src/renderer/Model.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/renderer/Model.cpp",
+  "file": "/home/efraino/Documents/Projects/GameEngine/src/renderer/Model.cpp",
+  "output": "CMakeFiles/engine.dir/src/renderer/Model.cpp.o"
+},
+{
+  "directory": "/home/efraino/Documents/Projects/GameEngine/build",
   "command": "/usr/bin/c++ -DVK_LAYER_LUNARG_standard_validation=1 -I/home/efraino/Documents/Projects/GameEngine/src/core -g -std=gnu++20 -o CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o -c /home/efraino/Documents/Projects/GameEngine/src/renderer/Pipeline.cpp",
   "file": "/home/efraino/Documents/Projects/GameEngine/src/renderer/Pipeline.cpp",
   "output": "CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o"

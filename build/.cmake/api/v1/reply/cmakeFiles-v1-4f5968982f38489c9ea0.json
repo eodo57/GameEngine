@@ -925,6 +925,22 @@
 		{
 			"isExternal" : true,
 			"path" : "/usr/lib/cmake/glm/glmConfig-release.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/usr/lib/tinyobjloader/cmake/tinyobjloader-config-version.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/usr/lib/tinyobjloader/cmake/tinyobjloader-config.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/usr/lib/tinyobjloader/cmake/tinyobjloader-targets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/usr/lib/tinyobjloader/cmake/tinyobjloader-targets-noconfig.cmake"
 		}
 	],
 	"kind" : "cmakeFiles",

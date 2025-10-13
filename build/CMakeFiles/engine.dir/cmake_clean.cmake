@@ -12,6 +12,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/src/renderer/Cameral.cpp.o.d"
   "CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o"
   "CMakeFiles/engine.dir/src/renderer/Mesh.cpp.o.d"
+  "CMakeFiles/engine.dir/src/renderer/Model.cpp.o"
+  "CMakeFiles/engine.dir/src/renderer/Model.cpp.o.d"
   "CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o"
   "CMakeFiles/engine.dir/src/renderer/Pipeline.cpp.o.d"
   "CMakeFiles/engine.dir/src/renderer/VulkanDevice.cpp.o"

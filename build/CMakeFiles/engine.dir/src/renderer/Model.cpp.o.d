@@ -1,10 +1,9 @@
-CMakeFiles/engine.dir/src/core/Application.cpp.o: \
- /home/efraino/Documents/Projects/GameEngine/src/core/Application.cpp \
+CMakeFiles/engine.dir/src/renderer/Model.cpp.o: \
+ /home/efraino/Documents/Projects/GameEngine/src/renderer/Model.cpp \
  /usr/include/stdc-predef.h \
- /home/efraino/Documents/Projects/GameEngine/src/core/Application.h \
- /home/efraino/Documents/Projects/GameEngine/src/core/../renderer/Model.h \
- /home/efraino/Documents/Projects/GameEngine/src/core/../renderer/VulkanDevice.h \
- /home/efraino/Documents/Projects/GameEngine/src/core/../renderer/../core/Window.h \
+ /home/efraino/Documents/Projects/GameEngine/src/renderer/Model.h \
+ /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanDevice.h \
+ /home/efraino/Documents/Projects/GameEngine/src/renderer/../core/Window.h \
  /usr/include/c++/15.2.1/string \
  /usr/include/c++/15.2.1/bits/requires_hosted.h \
  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -144,7 +143,7 @@ CMakeFiles/engine.dir/src/core/Application.cpp.o: \
  /usr/include/c++/15.2.1/typeinfo \
  /usr/include/c++/15.2.1/bits/nested_exception.h \
  /usr/include/c++/15.2.1/bits/enable_special_members.h \
- /home/efraino/Documents/Projects/GameEngine/src/core/../renderer/Mesh.h \
+ /home/efraino/Documents/Projects/GameEngine/src/renderer/Mesh.h \
  /usr/include/glm/glm.hpp /usr/include/glm/detail/_fixes.hpp \
  /usr/include/c++/15.2.1/cmath /usr/include/math.h \
  /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
@@ -346,11 +345,10 @@ CMakeFiles/engine.dir/src/core/Application.cpp.o: \
  /usr/include/c++/15.2.1/bits/ranges_algobase.h \
  /usr/include/c++/15.2.1/pstl/glue_memory_defs.h \
  /usr/include/c++/15.2.1/pstl/execution_defs.h \
- /home/efraino/Documents/Projects/GameEngine/src/core/../renderer/VulkanRenderer.h \
- /usr/include/GLFW/glfw3.h /usr/include/GL/gl.h /usr/include/GL/glext.h \
- /usr/include/KHR/khrplatform.h \
- /home/efraino/Documents/Projects/GameEngine/src/core/Logger.h \
- /usr/include/c++/15.2.1/sstream /usr/include/c++/15.2.1/istream \
- /usr/include/c++/15.2.1/ostream /usr/include/c++/15.2.1/bits/ostream.tcc \
- /usr/include/c++/15.2.1/bits/istream.tcc \
- /usr/include/c++/15.2.1/bits/sstream.tcc
+ /usr/include/tiny_obj_loader.h /usr/include/c++/15.2.1/map \
+ /usr/include/c++/15.2.1/bits/stl_tree.h \
+ /usr/include/c++/15.2.1/bits/node_handle.h \
+ /usr/include/c++/15.2.1/bits/stl_map.h \
+ /usr/include/c++/15.2.1/bits/stl_multimap.h \
+ /usr/include/c++/15.2.1/bits/erase_if.h /usr/include/c++/15.2.1/cstring \
+ /usr/include/string.h /usr/include/strings.h
