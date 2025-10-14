@@ -17,6 +17,9 @@ public:
     VulkanRenderer& operator=(const VulkanRenderer&) = delete;
 
     VulkanDevice& getDevice() const { return *vulkanDevice; }
+    
+    Camera& getCamera() { return camera; }
+
     void drawFrame(GameObject& gameObject); // <-- Updated signature
     void waitIdle() const;
 

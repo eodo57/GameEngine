@@ -4,7 +4,7 @@ project(GameEngine)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(
-    engine
+    engine $(SOURCE_DIRS src)
     src/main.cpp
     src/core/Application.cpp
     src/core/Window.cpp
@@ -16,7 +16,7 @@ add_executable(
     src/renderer/Pipeline.cpp
     src/renderer/Mesh.cpp
     src/renderer/Model.cpp
-    src/renderer/Cameral.cpp
+    src/renderer/Camera.cpp
     src/scene/GameObject.cpp)
 
 find_package(Vulkan REQUIRED)

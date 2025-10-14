@@ -226,15 +226,6 @@ GameEngine_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 GameEngine_SOURCE_DIR:STATIC=/home/efraino/Documents/Projects/GameEngine
 
-//Value Computed by CMake
-MyGameEngine_BINARY_DIR:STATIC=/home/efraino/Documents/Projects/GameEngine/build
-
-//Value Computed by CMake
-MyGameEngine_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-MyGameEngine_SOURCE_DIR:STATIC=/home/efraino/Documents/Projects/GameEngine
-
 //Arguments to supply to pkg-config
 PKG_CONFIG_ARGN:STRING=
 
@@ -253,14 +244,8 @@ Vulkan_INCLUDE_DIR:PATH=/usr/include
 //Path to a library.
 Vulkan_LIBRARY:FILEPATH=/lib/libvulkan.so
 
-//The directory containing a CMake configuration file for glm.
-glm_DIR:PATH=/usr/lib/cmake/glm
-
 //Path to a library.
 pkgcfg_lib_GLFW_glfw:FILEPATH=/usr/lib/libglfw.so
-
-//The directory containing a CMake configuration file for tinyobjloader.
-tinyobjloader_DIR:PATH=/usr/lib/tinyobjloader/cmake
 
 
 ########################
