@@ -21,6 +21,9 @@ public:
     // --- (FIX) Public getter for the GLFW window handle ---
     GLFWwindow* getGlfwWindow() const { return glfwWindow; }
 
+    int getWidth() const { return width; }
+    int getHeight() const { return height; }
+
     void createWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
 
 private:

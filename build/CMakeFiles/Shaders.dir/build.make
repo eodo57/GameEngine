@@ -66,15 +66,25 @@ include CMakeFiles/Shaders.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/Shaders.dir/progress.make
 
-CMakeFiles/Shaders: shaders/frag.glsl.spv
 CMakeFiles/Shaders: shaders/vert.glsl.spv
+CMakeFiles/Shaders: shaders/frag.glsl.spv
+CMakeFiles/Shaders: shaders/grid.vert.spv
+CMakeFiles/Shaders: shaders/grid.frag.spv
 
 shaders/frag.glsl.spv: /home/efraino/Documents/Projects/GameEngine/shaders/frag.glsl
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Compiling GLSL shader: frag.glsl"
 	/bin/glslc -fshader-stage=frag /home/efraino/Documents/Projects/GameEngine/shaders/frag.glsl -o /home/efraino/Documents/Projects/GameEngine/build/shaders/frag.glsl.spv
 
+shaders/grid.frag.spv: /home/efraino/Documents/Projects/GameEngine/shaders/grid.frag
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Compiling GLSL shader: grid.frag"
+	/bin/glslc -fshader-stage=frag /home/efraino/Documents/Projects/GameEngine/shaders/grid.frag -o /home/efraino/Documents/Projects/GameEngine/build/shaders/grid.frag.spv
+
+shaders/grid.vert.spv: /home/efraino/Documents/Projects/GameEngine/shaders/grid.vert
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Compiling GLSL shader: grid.vert"
+	/bin/glslc -fshader-stage=vert /home/efraino/Documents/Projects/GameEngine/shaders/grid.vert -o /home/efraino/Documents/Projects/GameEngine/build/shaders/grid.vert.spv
+
 shaders/vert.glsl.spv: /home/efraino/Documents/Projects/GameEngine/shaders/vert.glsl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Compiling GLSL shader: vert.glsl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/efraino/Documents/Projects/GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Compiling GLSL shader: vert.glsl"
 	/bin/glslc -fshader-stage=vert /home/efraino/Documents/Projects/GameEngine/shaders/vert.glsl -o /home/efraino/Documents/Projects/GameEngine/build/shaders/vert.glsl.spv
 
 CMakeFiles/Shaders.dir/codegen:
@@ -82,6 +92,8 @@ CMakeFiles/Shaders.dir/codegen:
 
 Shaders: CMakeFiles/Shaders
 Shaders: shaders/frag.glsl.spv
+Shaders: shaders/grid.frag.spv
+Shaders: shaders/grid.vert.spv
 Shaders: shaders/vert.glsl.spv
 Shaders: CMakeFiles/Shaders.dir/build.make
 .PHONY : Shaders

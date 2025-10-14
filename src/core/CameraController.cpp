@@ -28,6 +28,10 @@ CameraController::CameraController(Camera& cam) : camera(cam) {
 
 void CameraController::connectWindow(Window& win) {
     glfwWindow = win.getGlfwWindow();
+
+    windowWidth = win.getWidth();
+    windowHeight = win.getHeight();
+    
     glfwSetScrollCallback(glfwWindow, scrollCallback);
     glfwGetCursorPos(glfwWindow, &lastMouseX, &lastMouseY);
 }
@@ -102,4 +106,22 @@ void CameraController::processMouseInput() {
 void CameraController::processMouseScroll(double yoffset) {
     distance -= static_cast<float>(yoffset) * ZOOM_SPEED;
     distance = std::clamp(distance, 2.0f, 50.0f);
+}
+glm::vec3 CameraController::getMouseRay() {
+    double xpos, ypos;
+    glfwGetCursorPos(glfwWindow, &xpos, &ypos);
+
+    // Convert to normalized device coordinates
+    float x = (2.0f * static_cast<float>(xpos)) / windowWidth - 1.0f;
+    float y = 1.0f - (2.0f * static_cast<float>(ypos)) / windowHeight;
+
+    // Convert to 3D world space
+    glm::mat4 invProj = glm::inverse(camera.getProjection());
+    glm::mat4 invView = glm::inverse(camera.getView());
+    glm::vec4 rayClip = glm::vec4(x, y, -1.0, 1.0);
+    glm::vec4 rayEye = invProj * rayClip;
+    rayEye = glm::vec4(rayEye.x, rayEye.y, -1.0, 0.0);
+    glm::vec3 rayWorld = glm::vec3(invView * rayEye);
+    
+    return glm::normalize(rayWorld);
 }
