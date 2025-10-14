@@ -250,6 +250,8 @@ void VulkanRenderer::createGridPipeline() {
 }
 
 void VulkanRenderer::drawFrame(GameObject& gameObject) {
+
+
     vkWaitForFences(vulkanDevice->device(), 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
 
     uint32_t imageIndex;
@@ -260,6 +262,8 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
         imageAvailableSemaphores[currentFrame],
         VK_NULL_HANDLE,
         &imageIndex);
+
+
 
     if (result == VK_ERROR_OUT_OF_DATE_KHR) {
         // Handle swap chain recreation
@@ -297,24 +301,6 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
     renderPassInfo.pClearValues = &clearColor;
 
     vkCmdBeginRenderPass(commandBuffers[currentFrame], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-    // Inside the render pass in drawFrame()
-    if (gameObject.isSelected) {
-        // 1. Bind the orange highlight pipeline
-        vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, highlightPipeline);
-
-        // 2. Push a constant for a slightly larger model matrix
-        gameObject.transform.scale *= 1.05f;
-        vkCmdPushConstants(commandBuffers[currentFrame], pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(glm::mat4), &gameObject.transform.mat4());
-
-        // 3. Draw the object
-    gameObject.model->draw(commandBuffers[currentFrame]);
-
-        // 4. Revert scale and bind the original pipeline for the normal draw
-        gameObject.transform.scale /= 1.05f;
-        vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
-    }
-    // Now draw the object normally
-    gameObject.model->draw(commandBuffers[currentFrame]);
 
     // --- SET DYNAMIC STATES (THIS IS THE FIX) ---
     VkViewport viewport{};
@@ -343,12 +329,11 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
     // --- Draw the Game Object (uses its original descriptor set) ---
     vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
     vkCmdBindDescriptorSets(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, 1, &descriptorSets[imageIndex], 0, nullptr);
-
-    if(gameObject.model) {
+        if (gameObject.model) {
+        // We'll handle the color change in the UBO, not with a different pipeline
         gameObject.model->bind(commandBuffers[currentFrame]);
         gameObject.model->draw(commandBuffers[currentFrame]);
     }
-
     vkCmdEndRenderPass(commandBuffers[currentFrame]);
 
     if (vkEndCommandBuffer(commandBuffers[currentFrame]) != VK_SUCCESS) {
@@ -645,6 +630,7 @@ void VulkanRenderer::createSyncObjects() {
         }
     }
 }
+
 void VulkanRenderer::createDescriptorSetLayout() {
     VkDescriptorSetLayoutBinding uboLayoutBinding{};
     uboLayoutBinding.binding = 0; // Corresponds to `layout(binding = 0)` in the shader
@@ -662,6 +648,7 @@ void VulkanRenderer::createDescriptorSetLayout() {
         throw std::runtime_error("failed to create descriptor set layout!");
     }
 }
+
 void VulkanRenderer::createGraphicsPipeline() {
     auto vertShaderCode = readFile("shaders/vert.spv");
     auto fragShaderCode = readFile("shaders/frag.spv");
@@ -763,6 +750,7 @@ void VulkanRenderer::createGraphicsPipeline() {
     vkDestroyShaderModule(vulkanDevice->device(), fragShaderModule, nullptr);
     vkDestroyShaderModule(vulkanDevice->device(), vertShaderModule, nullptr);
 }
+
 void VulkanRenderer::createUniformBuffers() {
     VkDeviceSize bufferSize = sizeof(UniformBufferObject);
     uniformBuffers.resize(swapChainImages.size());
@@ -793,6 +781,7 @@ void VulkanRenderer::createDescriptorPool() {
         throw std::runtime_error("failed to create descriptor pool!");
     }
 }
+
 void VulkanRenderer::createGridDescriptorPool() {
     VkDescriptorPoolSize poolSize{};
     poolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
@@ -808,6 +797,7 @@ void VulkanRenderer::createGridDescriptorPool() {
         throw std::runtime_error("failed to create grid descriptor pool!");
     }
 }
+
 void VulkanRenderer::createDescriptorSets() {
     std::vector<VkDescriptorSetLayout> layouts(swapChainImages.size(), descriptorSetLayout);
     VkDescriptorSetAllocateInfo allocInfo{};
@@ -871,19 +861,22 @@ void VulkanRenderer::createGridDescriptorSets() {
         vkUpdateDescriptorSets(vulkanDevice->device(), 1, &descriptorWrite, 0, nullptr);
     }
 }
+
 void VulkanRenderer::updateUniformBuffer(uint32_t currentImage, GameObject& gameObject) {
-    camera.setPerspectiveProjection(glm::radians(45.f), swapChainExtent.width / (float) swapChainExtent.height, 0.1f, 100.f);
+    camera.setPerspectiveProjection(glm::radians(45.f), swapChainExtent.width / (float)swapChainExtent.height, 0.1f, 100.f);
 
     UniformBufferObject ubo{};
     ubo.model = gameObject.transform.mat4();
     ubo.view = camera.getView();
     ubo.proj = camera.getProjection();
-
-        if (gameObject.selected) {
-        ubo.color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f); // Highlight in yellow
-    } else {
-        ubo.color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f); // Default color
+    ubo.proj[1][1] *= -1; // Invert Y for Vulkan
+    if (gameObject.selected) {
+        ubo.color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f); // Yellow for selected
     }
+    else {
+        ubo.color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f); // White for not selected
+    }
+
 
     void* data;
     vkMapMemory(vulkanDevice->device(), uniformBuffersMemory[currentImage], 0, sizeof(ubo), 0, &data);
