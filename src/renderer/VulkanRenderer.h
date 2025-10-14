@@ -33,6 +33,8 @@ private:
     void createUniformBuffers();
     void createDescriptorPool();
     void createDescriptorSets();
+    void createGrid();
+    void createGridPipeline();
     void updateUniformBuffer(uint32_t currentImage, GameObject& gameObject);
     
     // Existing helper functions
@@ -50,6 +52,13 @@ private:
     VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
     VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
     VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
+    VkPipeline gridPipeline;
+    VkPipelineLayout gridPipelineLayout;
+    VkBuffer gridVertexBuffer;
+    VkDeviceMemory gridVertexBufferMemory;
+
+    std::vector<VkDescriptorSet> gridDescriptorSets;
+    uint32_t gridVertexCount;
     
     static std::vector<char> readFile(const std::string& filename);
     VkShaderModule createShaderModule(const std::vector<char>& code);

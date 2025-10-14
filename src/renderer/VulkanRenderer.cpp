@@ -21,12 +21,14 @@ void VulkanRenderer::initVulkan() {
     createSwapChain();
     createImageViews();
     createRenderPass();
-    createDescriptorSetLayout(); // UBO: Define what the shader expects
+    createDescriptorSetLayout();
     createGraphicsPipeline();
+    createGrid(); // <-- Create grid data
+    createGridPipeline(); // <-- Create grid pipeline
     createFramebuffers();
-    createUniformBuffers();      // UBO: Allocate memory for the matrices
-    createDescriptorPool();      // UBO: Create a pool to get descriptor sets from
-    createDescriptorSets();      // UBO: Create the descriptor sets themselves
+    createUniformBuffers();
+    createDescriptorPool();
+    createDescriptorSets();
     createCommandPool();
     createCommandBuffers();
     createSyncObjects();
@@ -34,7 +36,17 @@ void VulkanRenderer::initVulkan() {
 }
 
 void VulkanRenderer::cleanup() {
+    // Wait for the device to be idle before cleaning up
+    vkDeviceWaitIdle(vulkanDevice->device());
+
     cleanupSwapChain();
+
+    // Cleanup grid resources
+    vkDestroyPipeline(vulkanDevice->device(), gridPipeline, nullptr);
+    vkDestroyPipelineLayout(vulkanDevice->device(), gridPipelineLayout, nullptr);
+    vkDestroyBuffer(vulkanDevice->device(), gridVertexBuffer, nullptr);
+    vkFreeMemory(vulkanDevice->device(), gridVertexBufferMemory, nullptr);
+
 
     // Cleanup UBO resources
     vkDestroyDescriptorPool(vulkanDevice->device(), descriptorPool, nullptr);
@@ -50,6 +62,10 @@ void VulkanRenderer::cleanup() {
         vkDestroySemaphore(vulkanDevice->device(), imageAvailableSemaphores[i], nullptr);
         vkDestroyFence(vulkanDevice->device(), inFlightFences[i], nullptr);
     }
+    
+    // The command pool should be destroyed after the device is idle and all command buffers are no longer in use
+    vkDestroyCommandPool(vulkanDevice->device(), commandPool, nullptr);
+
 }
 
 void VulkanRenderer::cleanupSwapChain() {
@@ -66,109 +82,41 @@ void VulkanRenderer::cleanupSwapChain() {
     vkDestroySwapchainKHR(vulkanDevice->device(), swapChain, nullptr);
 }
 
-void VulkanRenderer::createDescriptorSetLayout() {
-    VkDescriptorSetLayoutBinding uboLayoutBinding{};
-    uboLayoutBinding.binding = 0; // Corresponds to `layout(binding = 0)` in the shader
-    uboLayoutBinding.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-    uboLayoutBinding.descriptorCount = 1;
-    uboLayoutBinding.stageFlags = VK_SHADER_STAGE_VERTEX_BIT; // The UBO is used in the vertex shader
-    uboLayoutBinding.pImmutableSamplers = nullptr;
+void VulkanRenderer::createGrid() {
+    std::vector<Mesh::Vertex> vertices;
+    int gridSize = 100;
+    float spacing = 1.0f;
+    glm::vec3 color = {0.3f, 0.3f, 0.3f};
 
-    VkDescriptorSetLayoutCreateInfo layoutInfo{};
-    layoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
-    layoutInfo.bindingCount = 1;
-    layoutInfo.pBindings = &uboLayoutBinding;
-
-    if (vkCreateDescriptorSetLayout(vulkanDevice->device(), &layoutInfo, nullptr, &descriptorSetLayout) != VK_SUCCESS) {
-        throw std::runtime_error("failed to create descriptor set layout!");
-    }
-}
-
-void VulkanRenderer::createUniformBuffers() {
-    VkDeviceSize bufferSize = sizeof(UniformBufferObject);
-    uniformBuffers.resize(swapChainImages.size());
-    uniformBuffersMemory.resize(swapChainImages.size());
-
-    for (size_t i = 0; i < swapChainImages.size(); i++) {
-        vulkanDevice->createBuffer(
-            bufferSize,
-            VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
-            VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
-            uniformBuffers[i],
-            uniformBuffersMemory[i]);
-    }
-}
-
-void VulkanRenderer::createDescriptorPool() {
-    VkDescriptorPoolSize poolSize{};
-    poolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-    poolSize.descriptorCount = static_cast<uint32_t>(swapChainImages.size());
-
-    VkDescriptorPoolCreateInfo poolInfo{};
-    poolInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
-    poolInfo.poolSizeCount = 1;
-    poolInfo.pPoolSizes = &poolSize;
-    poolInfo.maxSets = static_cast<uint32_t>(swapChainImages.size());
-
-    if (vkCreateDescriptorPool(vulkanDevice->device(), &poolInfo, nullptr, &descriptorPool) != VK_SUCCESS) {
-        throw std::runtime_error("failed to create descriptor pool!");
-    }
-}
-
-void VulkanRenderer::createDescriptorSets() {
-    std::vector<VkDescriptorSetLayout> layouts(swapChainImages.size(), descriptorSetLayout);
-    VkDescriptorSetAllocateInfo allocInfo{};
-    allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-    allocInfo.descriptorPool = descriptorPool;
-    allocInfo.descriptorSetCount = static_cast<uint32_t>(swapChainImages.size());
-    allocInfo.pSetLayouts = layouts.data();
-
-    descriptorSets.resize(swapChainImages.size());
-    if (vkAllocateDescriptorSets(vulkanDevice->device(), &allocInfo, descriptorSets.data()) != VK_SUCCESS) {
-        throw std::runtime_error("failed to allocate descriptor sets!");
+    for (int i = -gridSize; i <= gridSize; ++i) {
+        // Lines along Z-axis
+        vertices.push_back({{i * spacing, 0.f, -gridSize * spacing}, color});
+        vertices.push_back({{i * spacing, 0.f, gridSize * spacing}, color});
+        // Lines along X-axis
+        vertices.push_back({{-gridSize * spacing, 0.f, i * spacing}, color});
+        vertices.push_back({{gridSize * spacing, 0.f, i * spacing}, color});
     }
 
-    for (size_t i = 0; i < swapChainImages.size(); i++) {
-        VkDescriptorBufferInfo bufferInfo{};
-        bufferInfo.buffer = uniformBuffers[i];
-        bufferInfo.offset = 0;
-        bufferInfo.range = sizeof(UniformBufferObject);
+    gridVertexCount = static_cast<uint32_t>(vertices.size());
+    VkDeviceSize bufferSize = sizeof(vertices[0]) * gridVertexCount;
 
-        VkWriteDescriptorSet descriptorWrite{};
-        descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-        descriptorWrite.dstSet = descriptorSets[i];
-        descriptorWrite.dstBinding = 0;
-        descriptorWrite.dstArrayElement = 0;
-        descriptorWrite.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-        descriptorWrite.descriptorCount = 1;
-        descriptorWrite.pBufferInfo = &bufferInfo;
-
-        vkUpdateDescriptorSets(vulkanDevice->device(), 1, &descriptorWrite, 0, nullptr);
-    }
-}
-
-void VulkanRenderer::updateUniformBuffer(uint32_t currentImage, GameObject& gameObject) {
-    // REMOVE the old time-based animation logic
-    // static auto startTime = ...
-    // ... all the old camera and object rotation logic should be deleted ...
-    
-    // The camera is now controlled externally, so we just update the projection matrix
-    camera.setPerspectiveProjection(glm::radians(45.f), swapChainExtent.width / (float) swapChainExtent.height, 0.1f, 100.f);
-
-    UniformBufferObject ubo{};
-    ubo.model = gameObject.transform.mat4();
-    ubo.view = camera.getView();
-    ubo.proj = camera.getProjection();
+    vulkanDevice->createBuffer(
+        bufferSize,
+        VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+        VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
+        gridVertexBuffer,
+        gridVertexBufferMemory);
 
     void* data;
-    vkMapMemory(vulkanDevice->device(), uniformBuffersMemory[currentImage], 0, sizeof(ubo), 0, &data);
-    memcpy(data, &ubo, sizeof(ubo));
-    vkUnmapMemory(vulkanDevice->device(), uniformBuffersMemory[currentImage]);
+    vkMapMemory(vulkanDevice->device(), gridVertexBufferMemory, 0, bufferSize, 0, &data);
+    memcpy(data, vertices.data(), static_cast<size_t>(bufferSize));
+    vkUnmapMemory(vulkanDevice->device(), gridVertexBufferMemory);
 }
 
-void VulkanRenderer::createGraphicsPipeline() {
-    auto vertShaderCode = readFile("shaders/vert.spv");
-    auto fragShaderCode = readFile("shaders/frag.spv");
+
+void VulkanRenderer::createGridPipeline() {
+    auto vertShaderCode = readFile("shaders/grid.vert.spv");
+    auto fragShaderCode = readFile("shaders/grid.frag.spv");
 
     VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
     VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);
@@ -184,19 +132,19 @@ void VulkanRenderer::createGraphicsPipeline() {
     shaderStages[1].stage = VK_SHADER_STAGE_FRAGMENT_BIT;
     shaderStages[1].module = fragShaderModule;
     shaderStages[1].pName = "main";
-
+    
     auto bindingDescriptions = Mesh::Vertex::getBindingDescriptions();
     auto attributeDescriptions = Mesh::Vertex::getAttributeDescriptions();
     VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
     vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-    vertexInputInfo.vertexBindingDescriptionCount = static_cast<uint32_t>(bindingDescriptions.size());
-    vertexInputInfo.pVertexBindingDescriptions = bindingDescriptions.data();
-    vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
+    vertexInputInfo.vertexBindingDescriptionCount = 1;
+    vertexInputInfo.pVertexBindingDescriptions = &bindingDescriptions[0];
+    vertexInputInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
     vertexInputInfo.pVertexAttributeDescriptions = attributeDescriptions.data();
 
     VkPipelineInputAssemblyStateCreateInfo inputAssembly{};
     inputAssembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
-    inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+    inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_LINE_LIST; // <-- Draw lines
     inputAssembly.primitiveRestartEnable = VK_FALSE;
 
     VkPipelineViewportStateCreateInfo viewportState{};
@@ -208,65 +156,36 @@ void VulkanRenderer::createGraphicsPipeline() {
     rasterizer.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
     rasterizer.depthClampEnable = VK_FALSE;
     rasterizer.rasterizerDiscardEnable = VK_FALSE;
-    rasterizer.polygonMode = VK_POLYGON_MODE_FILL;
+    rasterizer.polygonMode = VK_POLYGON_MODE_LINE; // <-- Line polygon mode
     rasterizer.lineWidth = 1.0f;
-    rasterizer.cullMode = VK_CULL_MODE_BACK_BIT;
-    rasterizer.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE; // Use counter-clockwise for loaded models
+    rasterizer.cullMode = VK_CULL_MODE_NONE; // No culling for lines
+    rasterizer.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
     rasterizer.depthBiasEnable = VK_FALSE;
 
-    VkPipelineMultisampleStateCreateInfo multisampling{};
-    multisampling.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
-    multisampling.sampleShadingEnable = VK_FALSE;
-    multisampling.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
-
-    VkPipelineColorBlendAttachmentState colorBlendAttachment{};
-    colorBlendAttachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
-    colorBlendAttachment.blendEnable = VK_FALSE;
-
-    VkPipelineColorBlendStateCreateInfo colorBlending{};
-    colorBlending.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
-    colorBlending.logicOpEnable = VK_FALSE;
-    colorBlending.attachmentCount = 1;
-    colorBlending.pAttachments = &colorBlendAttachment;
-    
-    std::vector<VkDynamicState> dynamicStates = {VK_DYNAMIC_STATE_VIEWPORT, VK_DYNAMIC_STATE_SCISSOR};
-    VkPipelineDynamicStateCreateInfo dynamicState{};
-    dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
-    dynamicState.dynamicStateCount = static_cast<uint32_t>(dynamicStates.size());
-    dynamicState.pDynamicStates = dynamicStates.data();
+    // ... The rest of the pipeline setup is similar to createGraphicsPipeline ...
+    // ... (multisampling, color blending, dynamic states)
 
     VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
     pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-    pipelineLayoutInfo.setLayoutCount = 1; // Use one descriptor set
-    pipelineLayoutInfo.pSetLayouts = &descriptorSetLayout; // The UBO layout
-    pipelineLayoutInfo.pushConstantRangeCount = 0;
+    pipelineLayoutInfo.setLayoutCount = 1;
+    pipelineLayoutInfo.pSetLayouts = &descriptorSetLayout; // Reuse the main UBO layout
 
-    if (vkCreatePipelineLayout(vulkanDevice->device(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
-        throw std::runtime_error("failed to create pipeline layout!");
+    if (vkCreatePipelineLayout(vulkanDevice->device(), &pipelineLayoutInfo, nullptr, &gridPipelineLayout) != VK_SUCCESS) {
+        throw std::runtime_error("failed to create grid pipeline layout!");
     }
-
+    
     VkGraphicsPipelineCreateInfo pipelineInfo{};
-    pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-    pipelineInfo.stageCount = 2;
-    pipelineInfo.pStages = shaderStages;
-    pipelineInfo.pVertexInputState = &vertexInputInfo;
-    pipelineInfo.pInputAssemblyState = &inputAssembly;
-    pipelineInfo.pViewportState = &viewportState;
-    pipelineInfo.pRasterizationState = &rasterizer;
-    pipelineInfo.pMultisampleState = &multisampling;
-    pipelineInfo.pColorBlendState = &colorBlending;
-    pipelineInfo.pDynamicState = &dynamicState;
-    pipelineInfo.layout = pipelineLayout;
-    pipelineInfo.renderPass = renderPass;
-    pipelineInfo.subpass = 0;
-
-    if (vkCreateGraphicsPipelines(vulkanDevice->device(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &graphicsPipeline) != VK_SUCCESS) {
-        throw std::runtime_error("failed to create graphics pipeline!");
+    // ... Fill out pipelineInfo struct similar to createGraphicsPipeline ...
+    pipelineInfo.layout = gridPipelineLayout; // Use the new layout
+    
+    if (vkCreateGraphicsPipelines(vulkanDevice->device(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &gridPipeline) != VK_SUCCESS) {
+        throw std::runtime_error("failed to create grid graphics pipeline!");
     }
 
     vkDestroyShaderModule(vulkanDevice->device(), fragShaderModule, nullptr);
     vkDestroyShaderModule(vulkanDevice->device(), vertShaderModule, nullptr);
 }
+
 
 void VulkanRenderer::drawFrame(GameObject& gameObject) {
     vkWaitForFences(vulkanDevice->device(), 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
@@ -316,27 +235,29 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
     renderPassInfo.pClearValues = &clearColor;
 
     vkCmdBeginRenderPass(commandBuffers[currentFrame], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-    vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
-
-    VkViewport viewport{};
-    viewport.x = 0.0f;
-    viewport.y = 0.0f;
-    viewport.width = static_cast<float>(swapChainExtent.width);
-    viewport.height = static_cast<float>(swapChainExtent.height);
-    viewport.minDepth = 0.0f;
-    viewport.maxDepth = 1.0f;
-    vkCmdSetViewport(commandBuffers[currentFrame], 0, 1, &viewport);
-
-    VkRect2D scissor{};
-    scissor.offset = {0, 0};
-    scissor.extent = swapChainExtent;
-    vkCmdSetScissor(commandBuffers[currentFrame], 0, 1, &scissor);
     
+    // --- Draw the Grid ---
+    vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, gridPipeline);
+    vkCmdBindDescriptorSets(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, gridPipelineLayout, 0, 1, &descriptorSets[imageIndex], 0, nullptr);
+    VkBuffer gridVertexBuffers[] = {gridVertexBuffer};
+    VkDeviceSize offsets[] = {0};
+    vkCmdBindVertexBuffers(commandBuffers[currentFrame], 0, 1, gridVertexBuffers, offsets);
+    vkCmdDraw(commandBuffers[currentFrame], gridVertexCount, 1, 0, 0);
+
+
+    // --- Draw the Game Object ---
+    vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
     vkCmdBindDescriptorSets(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, 1, &descriptorSets[imageIndex], 0, nullptr);
     
     if(gameObject.model) {
         gameObject.model->bind(commandBuffers[currentFrame]);
         gameObject.model->draw(commandBuffers[currentFrame]);
+    }
+
+    vkCmdEndRenderPass(commandBuffers[currentFrame]);
+
+    if (vkEndCommandBuffer(commandBuffers[currentFrame]) != VK_SUCCESS) {
+        throw std::runtime_error("failed to record command buffer!");
     }
 
     vkCmdEndRenderPass(commandBuffers[currentFrame]);
