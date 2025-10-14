@@ -344,9 +344,9 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
     
     vkCmdBindDescriptorSets(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, 1, &descriptorSets[imageIndex], 0, nullptr);
     
-    if(gameObject.mesh) {
-        gameObject.mesh->bind(commandBuffers[currentFrame]);
-        gameObject.mesh->draw(commandBuffers[currentFrame]);
+    if(gameObject.model) {
+        gameObject.model->bind(commandBuffers[currentFrame]);
+        gameObject.model->draw(commandBuffers[currentFrame]);
     }
 
     vkCmdEndRenderPass(commandBuffers[currentFrame]);
