@@ -15,7 +15,7 @@ Application::Application() {
 Application::~Application() {}
 
 void Application::loadGameObjects() {
-    std::shared_ptr<Model> model = std::make_shared<Model>(vulkanRenderer->getDevice(), "models/smooth_vase.obj");
+    std::shared_ptr<Model> model = std::make_shared<Model>(vulkanRenderer->getDevice(), "models/airboat.obj");
 
     auto vase = GameObject::createGameObject();
     vase.model = model; // This will now work

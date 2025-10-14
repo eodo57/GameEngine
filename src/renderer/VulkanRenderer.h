@@ -33,14 +33,15 @@ private:
     void updateUniformBuffer(uint32_t currentImage, GameObject& gameObject);
     
     // Existing helper functions
+private:
     void createSwapChain();
     void createImageViews();
     void createRenderPass();
-    void createGraphicsPipeline();
     void createFramebuffers();
     void createCommandPool();
     void createCommandBuffers();
     void createSyncObjects();
+    void createGraphicsPipeline();
 
     SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
     VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);

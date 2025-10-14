@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/engine",
             "args": [],
-            "cwd": "${workspaceFolder}/build",
+            "cwd": "${workspaceFolder}/",
             "preLaunchTask": "build"
         }
     ]

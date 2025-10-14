@@ -3,7 +3,7 @@ CMakeFiles/engine.dir/src/main.cpp.o: \
  /usr/include/stdc-predef.h \
  /home/efraino/Documents/Projects/GameEngine/src/core/Application.h \
  /home/efraino/Documents/Projects/GameEngine/src/core/../scene/GameObject.h \
- /home/efraino/Documents/Projects/GameEngine/src/core/../scene/../renderer/Mesh.h \
+ /home/efraino/Documents/Projects/GameEngine/src/core/../scene/../renderer/Model.h \
  /home/efraino/Documents/Projects/GameEngine/src/core/../scene/../renderer/VulkanDevice.h \
  /home/efraino/Documents/Projects/GameEngine/src/core/../scene/../renderer/../core/Window.h \
  /usr/include/GLFW/glfw3.h \
@@ -147,6 +147,7 @@ CMakeFiles/engine.dir/src/main.cpp.o: \
  /usr/include/c++/15.2.1/typeinfo \
  /usr/include/c++/15.2.1/bits/nested_exception.h \
  /usr/include/c++/15.2.1/bits/enable_special_members.h \
+ /home/efraino/Documents/Projects/GameEngine/src/core/../scene/../renderer/Mesh.h \
  /usr/include/glm/glm.hpp /usr/include/glm/detail/_fixes.hpp \
  /usr/include/c++/15.2.1/cmath /usr/include/math.h \
  /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
@@ -288,20 +289,7 @@ CMakeFiles/engine.dir/src/main.cpp.o: \
  /usr/include/glm/packing.hpp /usr/include/glm/detail/func_packing.inl \
  /usr/include/glm/detail/type_half.hpp \
  /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
- /usr/include/glm/detail/func_integer.inl \
- /home/efraino/Documents/Projects/GameEngine/src/core/../scene/TransformComponent.h \
- /usr/include/glm/gtc/matrix_transform.hpp \
- /usr/include/glm/ext/matrix_projection.hpp \
- /usr/include/glm/gtc/constants.hpp \
- /usr/include/glm/ext/scalar_constants.hpp \
- /usr/include/glm/ext/scalar_constants.inl \
- /usr/include/glm/gtc/constants.inl \
- /usr/include/glm/ext/matrix_projection.inl \
- /usr/include/glm/ext/matrix_clip_space.hpp \
- /usr/include/glm/ext/matrix_clip_space.inl \
- /usr/include/glm/ext/matrix_transform.hpp \
- /usr/include/glm/ext/matrix_transform.inl \
- /usr/include/glm/gtc/matrix_transform.inl /usr/include/c++/15.2.1/memory \
+ /usr/include/glm/detail/func_integer.inl /usr/include/c++/15.2.1/memory \
  /usr/include/c++/15.2.1/bits/stl_tempbuf.h \
  /usr/include/c++/15.2.1/bits/stl_raw_storage_iter.h \
  /usr/include/c++/15.2.1/bits/align.h \
@@ -361,6 +349,19 @@ CMakeFiles/engine.dir/src/main.cpp.o: \
  /usr/include/c++/15.2.1/bits/ranges_algobase.h \
  /usr/include/c++/15.2.1/pstl/glue_memory_defs.h \
  /usr/include/c++/15.2.1/pstl/execution_defs.h \
+ /home/efraino/Documents/Projects/GameEngine/src/core/../scene/TransformComponent.h \
+ /usr/include/glm/gtc/matrix_transform.hpp \
+ /usr/include/glm/ext/matrix_projection.hpp \
+ /usr/include/glm/gtc/constants.hpp \
+ /usr/include/glm/ext/scalar_constants.hpp \
+ /usr/include/glm/ext/scalar_constants.inl \
+ /usr/include/glm/gtc/constants.inl \
+ /usr/include/glm/ext/matrix_projection.inl \
+ /usr/include/glm/ext/matrix_clip_space.hpp \
+ /usr/include/glm/ext/matrix_clip_space.inl \
+ /usr/include/glm/ext/matrix_transform.hpp \
+ /usr/include/glm/ext/matrix_transform.inl \
+ /usr/include/glm/gtc/matrix_transform.inl \
  /usr/include/c++/15.2.1/unordered_map \
  /usr/include/c++/15.2.1/bits/unordered_map.h \
  /usr/include/c++/15.2.1/bits/hashtable.h \

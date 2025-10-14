@@ -348,6 +348,7 @@ CMakeFiles/engine.dir/src/renderer/VulkanRenderer.cpp.o: \
  /usr/include/c++/15.2.1/pstl/glue_memory_defs.h \
  /usr/include/c++/15.2.1/pstl/execution_defs.h \
  /home/efraino/Documents/Projects/GameEngine/src/renderer/../scene/GameObject.h \
+ /home/efraino/Documents/Projects/GameEngine/src/renderer/../scene/../renderer/Model.h \
  /home/efraino/Documents/Projects/GameEngine/src/renderer/../scene/../renderer/Mesh.h \
  /home/efraino/Documents/Projects/GameEngine/src/renderer/../scene/TransformComponent.h \
  /usr/include/glm/gtc/matrix_transform.hpp \
