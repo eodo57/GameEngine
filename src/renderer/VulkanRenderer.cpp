@@ -111,7 +111,9 @@ void VulkanRenderer::cleanupSwapChain() {
 }
 
 void VulkanRenderer::createGrid() {
-    std::vector<Mesh::Vertex> vertices;
+    // --- THIS IS THE FIX ---
+    // Use the correct vertex type that matches the grid pipeline and shader
+    std::vector<GridVertex> vertices;
     int gridSize = 100;
     float spacing = 1.0f;
     glm::vec3 color = {0.3f, 0.3f, 0.3f};
@@ -128,6 +130,7 @@ void VulkanRenderer::createGrid() {
     gridVertexCount = static_cast<uint32_t>(vertices.size());
     VkDeviceSize bufferSize = sizeof(vertices[0]) * gridVertexCount;
 
+    // Buffer creation is correct and does not need to be changed
     vulkanDevice->createBuffer(
         bufferSize,
         VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
