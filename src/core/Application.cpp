@@ -1,7 +1,8 @@
 #include "Application.h"
 #include "Window.h"
 #include "../renderer/VulkanRenderer.h"
-#include "../renderer/Model.h" // Include Model for loading
+#include "../renderer/Model.h"
+#include "../scene/GameObject.h" // <-- Make sure this is included
 #include "Logger.h"
 #include <GLFW/glfw3.h>
 
@@ -15,9 +16,9 @@ Application::~Application() {}
 
 void Application::loadGameObjects() {
     std::shared_ptr<Model> model = std::make_shared<Model>(vulkanRenderer->getDevice(), "models/smooth_vase.obj");
-    
+
     auto vase = GameObject::createGameObject();
-    vase.mesh = model;
+    vase.model = model; // This will now work
     vase.transform.translation = {0.f, 0.f, 2.5f};
     vase.transform.scale = {3.f, 3.f, 3.f};
     gameObjects.push_back(std::move(vase));
@@ -28,7 +29,7 @@ void Application::run() {
 
     while (!window->shouldClose()) {
         glfwPollEvents();
-        vulkanRenderer->drawFrame(gameObjects[0]); // Pass the first game object
+        vulkanRenderer->drawFrame(gameObjects[0]);
     }
 
     vulkanRenderer->waitIdle();

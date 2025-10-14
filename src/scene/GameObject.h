@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../renderer/Mesh.h"
-#include "TransformComponent.h" // <-- Use the standalone TransformComponent
+#include "../renderer/Model.h" // <-- Include Model.h
+#include "TransformComponent.h"
 #include <memory>
 #include <unordered_map>
 
@@ -10,12 +10,11 @@ public:
     using id_t = unsigned int;
     using Map = std::unordered_map<id_t, GameObject>;
 
-    static GameObject createGameObject() { // <-- Return by value for simplicity
+    static GameObject createGameObject() {
         static id_t currentId = 0;
         return GameObject{currentId++};
     }
 
-    // No copying, but allow moving
     GameObject(const GameObject&) = delete;
     GameObject& operator=(const GameObject&) = delete;
     GameObject(GameObject&&) = default;
@@ -23,7 +22,7 @@ public:
 
     id_t getId() const { return id; }
 
-    std::shared_ptr<Mesh> mesh{};
+    std::shared_ptr<Model> model{}; 
     glm::vec3 color{};
     TransformComponent transform{};
 
