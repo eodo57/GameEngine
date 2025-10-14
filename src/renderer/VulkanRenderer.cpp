@@ -319,12 +319,12 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
 
     vkCmdEndRenderPass(commandBuffers[currentFrame]);
 
+    vkCmdEndRenderPass(commandBuffers[currentFrame]);
+
     if (vkEndCommandBuffer(commandBuffers[currentFrame]) != VK_SUCCESS) {
         throw std::runtime_error("failed to record command buffer!");
     }
-
-    vkCmdEndRenderPass(commandBuffers[currentFrame]);
-
+    
     VkSubmitInfo submitInfo{};
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
 
