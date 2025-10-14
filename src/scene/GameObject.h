@@ -14,7 +14,7 @@ public:
         static id_t currentId = 0;
         return GameObject{currentId++};
     }
-
+    GameObject() = default;
     GameObject(const GameObject&) = delete;
     GameObject& operator=(const GameObject&) = delete;
     GameObject(GameObject&&) = default;

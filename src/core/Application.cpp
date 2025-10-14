@@ -1,6 +1,5 @@
 #include "Application.h"
 #include "Logger.h"
-#include <iostream>
 
 Application::Application() : window(800, 600, "Vulkan Game Engine"), renderer(window), cameraController(renderer.getCamera()) {
     Logger::info("Application starting...");
