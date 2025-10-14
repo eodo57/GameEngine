@@ -50,3 +50,23 @@ void Camera::setViewYXZ(glm::vec3 position, glm::vec3 rotation) {
         {(c2 * s1), (-s2), (c1 * c2), 0.0f},
         {-position.x, -position.y, -position.z, 1.0f}};
 }
+Ray Camera::castRay(float mouseX, float mouseY, int screenWidth, int screenHeight) {
+    // 1. Convert mouse coordinates to normalized device coordinates (NDC)
+    float x = (2.0f * mouseX) / screenWidth - 1.0f;
+    float y = 1.0f - (2.0f * mouseY) / screenHeight; // Y is inverted in Vulkan
+    float z = 1.0f;
+    glm::vec3 ray_nds = glm::vec3(x, y, z);
+
+    // 2. Convert NDC to clip space
+    glm::vec4 ray_clip = glm::vec4(ray_nds.x, ray_nds.y, -1.0, 1.0);
+
+    // 3. Convert clip space to eye space
+    glm::vec4 ray_eye = glm::inverse(projectionMatrix) * ray_clip;
+    ray_eye = glm::vec4(ray_eye.x, ray_eye.y, -1.0, 0.0);
+
+    // 4. Convert eye space to world space
+    glm::vec3 ray_wor = glm::vec3(glm::inverse(viewMatrix) * ray_eye);
+    ray_wor = glm::normalize(ray_wor);
+
+    return {position, ray_wor};
+}

@@ -879,6 +879,12 @@ void VulkanRenderer::updateUniformBuffer(uint32_t currentImage, GameObject& game
     ubo.view = camera.getView();
     ubo.proj = camera.getProjection();
 
+        if (gameObject.selected) {
+        ubo.color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f); // Highlight in yellow
+    } else {
+        ubo.color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f); // Default color
+    }
+
     void* data;
     vkMapMemory(vulkanDevice->device(), uniformBuffersMemory[currentImage], 0, sizeof(ubo), 0, &data);
     memcpy(data, &ubo, sizeof(ubo));

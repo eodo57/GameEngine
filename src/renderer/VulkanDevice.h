@@ -2,9 +2,9 @@
 
 #include "../core/Window.h"
 #include <vulkan/vulkan.h>
-//#include <string>
 #include <vector>
 #include <optional>
+#include <glm/glm.hpp>
 
 struct SwapChainSupportDetails {
     VkSurfaceCapabilitiesKHR capabilities;
@@ -18,6 +18,12 @@ struct QueueFamilyIndices {
     bool isComplete() { return graphicsFamily.has_value() && presentFamily.has_value(); }
 };
 
+struct UniformBufferObject {
+    glm::mat4 model;
+    glm::mat4 view;
+    glm::mat4 proj;
+    glm::vec4 color; // <-- Add this
+};
 class VulkanDevice {
 public:
     VulkanDevice(Window& window);

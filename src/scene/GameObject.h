@@ -22,9 +22,12 @@ public:
 
     id_t getId() const { return id; }
 
-    std::shared_ptr<Model> model{}; 
-    glm::vec3 color{};
     TransformComponent transform{};
+    std::shared_ptr<Model> model{}; 
+    bool selected = false; // New member to track selection state
+    bool isSelected = false; // New member to track if the object is currently selected
+    glm::vec3 color{};
+   
 
 private:
     GameObject(id_t objId) : id(objId) {}

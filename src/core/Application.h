@@ -21,10 +21,14 @@ public:
 
 private:
     void loadGameObjects();
-
+    void castRayAndSelect(double mouseX, double mouseY);
+    bool intersects(const Ray& ray, const GameObject& object);
     std::unique_ptr<Window> window;
     std::unique_ptr<VulkanRenderer> vulkanRenderer;
     std::vector<GameObject> gameObjects;
     std::unique_ptr<CameraController> cameraController;
+
+    GameObject* selectedObject = nullptr;
+
     float lastFrameTime = 0.f;
 };
