@@ -7,6 +7,34 @@
 #include <fstream>
 #include <algorithm>
 
+struct GridVertex {
+    glm::vec3 position;
+    glm::vec3 color;
+
+    static std::vector<VkVertexInputBindingDescription> getBindingDescriptions() {
+        std::vector<VkVertexInputBindingDescription> bindingDescriptions(1);
+        bindingDescriptions[0].binding = 0;
+        bindingDescriptions[0].stride = sizeof(GridVertex);
+        bindingDescriptions[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+        return bindingDescriptions;
+    }
+
+    static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions() {
+        std::vector<VkVertexInputAttributeDescription> attributeDescriptions(2);
+        // Position
+        attributeDescriptions[0].binding = 0;
+        attributeDescriptions[0].location = 0;
+        attributeDescriptions[0].format = VK_FORMAT_R32G32B32_SFLOAT;
+        attributeDescriptions[0].offset = offsetof(GridVertex, position);
+        // Color
+        attributeDescriptions[1].binding = 0;
+        attributeDescriptions[1].location = 1;
+        attributeDescriptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
+        attributeDescriptions[1].offset = offsetof(GridVertex, color);
+        return attributeDescriptions;
+    }
+};
+
 VulkanRenderer::VulkanRenderer(Window& appWindow) : window(appWindow) {
     vulkanDevice = std::make_unique<VulkanDevice>(window);
     initVulkan();
@@ -132,16 +160,15 @@ void VulkanRenderer::createGridPipeline() {
     shaderStages[1].stage = VK_SHADER_STAGE_FRAGMENT_BIT;
     shaderStages[1].module = fragShaderModule;
     shaderStages[1].pName = "main";
-
-    auto bindingDescriptions = Mesh::Vertex::getBindingDescriptions();
-    auto attributeDescriptions = Mesh::Vertex::getAttributeDescriptions();
+    
+    // Use the NEW GridVertex descriptions
+    auto bindingDescriptions = GridVertex::getBindingDescriptions();
+    auto attributeDescriptions = GridVertex::getAttributeDescriptions();
     VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
     vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-    vertexInputInfo.vertexBindingDescriptionCount = 1;
-    vertexInputInfo.pVertexBindingDescriptions = &bindingDescriptions[0];
-    // --- THIS IS THE FIX ---
-    // Only provide the first two attributes (position and color) to match the grid shader
-    vertexInputInfo.vertexAttributeDescriptionCount = 2;
+    vertexInputInfo.vertexBindingDescriptionCount = static_cast<uint32_t>(bindingDescriptions.size());
+    vertexInputInfo.pVertexBindingDescriptions = bindingDescriptions.data();
+    vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
     vertexInputInfo.pVertexAttributeDescriptions = attributeDescriptions.data();
 
     VkPipelineInputAssemblyStateCreateInfo inputAssembly{};
