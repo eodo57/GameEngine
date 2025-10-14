@@ -7,11 +7,11 @@
 #include <vulkan/vulkan.h>
 
 struct UniformBufferObject {
-    alignas(16) glm::vec4 color  ; // For object color
+    
     glm::mat4 model;
     glm::mat4 view;
     glm::mat4 proj;
-    
+    alignas(16) glm::vec4 color; // For object color
 };
 
 class Window;

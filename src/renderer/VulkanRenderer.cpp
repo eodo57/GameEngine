@@ -6,6 +6,8 @@
 #include <stdexcept>
 #include <fstream>
 #include <algorithm>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 struct GridVertex {
     glm::vec3 position;
@@ -865,7 +867,7 @@ void VulkanRenderer::createGridDescriptorSets() {
 void VulkanRenderer::updateUniformBuffer(uint32_t currentImage, GameObject& gameObject) {
     camera.setPerspectiveProjection(glm::radians(45.f), swapChainExtent.width / (float)swapChainExtent.height, 0.1f, 100.f);
 
-    UniformBufferObject ubo{};
+    UniformBufferObject ubo{gameObject.transform.mat4(), camera.getView(), camera.getProjection() };
     ubo.model = gameObject.transform.mat4();
     ubo.view = camera.getView();
     ubo.proj = camera.getProjection();
