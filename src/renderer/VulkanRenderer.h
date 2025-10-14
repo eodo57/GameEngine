@@ -6,16 +6,16 @@
 #include <vector>
 #include <vulkan/vulkan.h>
 
-struct UniformBufferObject {
-    
-    glm::mat4 model;
-    glm::mat4 view;
-    glm::mat4 proj;
-    alignas(16) glm::vec4 color; // For object color
-};
-
 class Window;
 class GameObject; // <-- Forward-declare GameObject
+
+    // --- NEW UBO and Descriptor members ---
+struct UniformBufferObject {
+        glm::mat4 model;
+        glm::mat4 view;
+        glm::mat4 proj;
+        alignas(16) glm::vec4 color; // For object color
+};
 
 class VulkanRenderer {
 public:
@@ -77,12 +77,7 @@ private:
     Window& window;
     std::unique_ptr<VulkanDevice> vulkanDevice;
     
-    // --- NEW UBO and Descriptor members ---
-    struct UniformBufferObject {
-        glm::mat4 model;
-        glm::mat4 view;
-        glm::mat4 proj;
-    };
+
 
     std::vector<VkBuffer> uniformBuffers;
     std::vector<VkDeviceMemory> uniformBuffersMemory;

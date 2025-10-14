@@ -200,6 +200,7 @@ CMakeFiles/engine.dir/src/core/CameraController.cpp.o: \
  /usr/include/glm/detail/type_half.hpp \
  /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
  /usr/include/glm/detail/func_integer.inl \
+ /home/efraino/Documents/Projects/GameEngine/src/core/../renderer/Ray.h \
  /home/efraino/Documents/Projects/GameEngine/src/core/Window.h \
  /usr/include/GLFW/glfw3.h /usr/include/vulkan/vulkan.h \
  /usr/include/vulkan/vk_platform.h /usr/include/vulkan/vulkan_core.h \
