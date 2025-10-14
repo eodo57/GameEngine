@@ -267,7 +267,7 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
     } else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
         throw std::runtime_error("failed to acquire swap chain image!");
     }
-    
+
     if (imagesInFlight[imageIndex] != VK_NULL_HANDLE) {
         vkWaitForFences(vulkanDevice->device(), 1, &imagesInFlight[imageIndex], VK_TRUE, UINT64_MAX);
     }
@@ -297,10 +297,42 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
     renderPassInfo.pClearValues = &clearColor;
 
     vkCmdBeginRenderPass(commandBuffers[currentFrame], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-    
-     // --- Draw the Grid (THIS IS THE KEY CHANGE) ---
+    // Inside the render pass in drawFrame()
+    if (gameObject.isSelected) {
+        // 1. Bind the orange highlight pipeline
+        vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, highlightPipeline);
+
+        // 2. Push a constant for a slightly larger model matrix
+        gameObject.transform.scale *= 1.05f;
+        vkCmdPushConstants(commandBuffers[currentFrame], pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(glm::mat4), &gameObject.transform.mat4());
+
+        // 3. Draw the object
+    gameObject.model->draw(commandBuffers[currentFrame]);
+
+        // 4. Revert scale and bind the original pipeline for the normal draw
+        gameObject.transform.scale /= 1.05f;
+        vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
+    }
+    // Now draw the object normally
+    gameObject.model->draw(commandBuffers[currentFrame]);
+
+    // --- SET DYNAMIC STATES (THIS IS THE FIX) ---
+    VkViewport viewport{};
+    viewport.x = 0.0f;
+    viewport.y = 0.0f;
+    viewport.width = static_cast<float>(swapChainExtent.width);
+    viewport.height = static_cast<float>(swapChainExtent.height);
+    viewport.minDepth = 0.0f;
+    viewport.maxDepth = 1.0f;
+    vkCmdSetViewport(commandBuffers[currentFrame], 0, 1, &viewport);
+
+    VkRect2D scissor{};
+    scissor.offset = {0, 0};
+    scissor.extent = swapChainExtent;
+    vkCmdSetScissor(commandBuffers[currentFrame], 0, 1, &scissor);
+
+    // --- Draw the Grid (THIS IS THE KEY CHANGE) ---
     vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, gridPipeline);
-    // Bind the NEW, DEDICATED grid descriptor set
     vkCmdBindDescriptorSets(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, gridPipelineLayout, 0, 1, &gridDescriptorSets[imageIndex], 0, nullptr);
     VkBuffer gridVertexBuffers[] = {gridVertexBuffer};
     VkDeviceSize offsets[] = {0};
@@ -311,7 +343,7 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
     // --- Draw the Game Object (uses its original descriptor set) ---
     vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
     vkCmdBindDescriptorSets(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, 1, &descriptorSets[imageIndex], 0, nullptr);
-    
+
     if(gameObject.model) {
         gameObject.model->bind(commandBuffers[currentFrame]);
         gameObject.model->draw(commandBuffers[currentFrame]);
@@ -319,12 +351,10 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
 
     vkCmdEndRenderPass(commandBuffers[currentFrame]);
 
-    vkCmdEndRenderPass(commandBuffers[currentFrame]);
-
     if (vkEndCommandBuffer(commandBuffers[currentFrame]) != VK_SUCCESS) {
         throw std::runtime_error("failed to record command buffer!");
     }
-    
+
     VkSubmitInfo submitInfo{};
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
 
@@ -355,7 +385,7 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
     presentInfo.pImageIndices = &imageIndex;
 
     result = vkQueuePresentKHR(vulkanDevice->presentQueue(), &presentInfo);
-    
+
     if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR) {
         // Handle window resizing
     } else if (result != VK_SUCCESS) {
