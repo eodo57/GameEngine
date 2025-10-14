@@ -46,7 +46,7 @@ foreach(SHADER_PATH ${GLSL_SHADERS})
         message(FATAL_ERROR "Unknown shader type for ${SHADER_NAME}. Name must contain 'vert' or 'frag'.")
     endif()
 
-    set(SPIRV_SHADER "${CMAKE_BINARY_DIR}/shaders/${SHADER_NAME}.spv")
+    set(SPIRV_SHADER "${CMAKE_CURRENT_SOURCE_DIR}/shaders/${SHADER_NAME}.spv")
 
     add_custom_command(
         OUTPUT ${SPIRV_SHADER}

@@ -68,25 +68,25 @@
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/shaders/frag.glsl.spv.rule",
+			"path" : "shaders/frag.glsl.spv.rule",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/shaders/grid.frag.spv.rule",
+			"path" : "shaders/grid.frag.spv.rule",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/shaders/grid.vert.spv.rule",
+			"path" : "shaders/grid.vert.spv.rule",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/shaders/vert.glsl.spv.rule",
+			"path" : "shaders/vert.glsl.spv.rule",
 			"sourceGroupIndex" : 1
 		}
 	],

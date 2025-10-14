@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
+  "/home/efraino/Documents/Projects/GameEngine/shaders/frag.glsl.spv"
+  "/home/efraino/Documents/Projects/GameEngine/shaders/grid.frag.spv"
+  "/home/efraino/Documents/Projects/GameEngine/shaders/grid.vert.spv"
+  "/home/efraino/Documents/Projects/GameEngine/shaders/vert.glsl.spv"
   "CMakeFiles/Shaders"
-  "shaders/frag.glsl.spv"
-  "shaders/grid.frag.spv"
-  "shaders/grid.vert.spv"
-  "shaders/vert.glsl.spv"
 )
 
 # Per-language clean rules from dependency scanning.
