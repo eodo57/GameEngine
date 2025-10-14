@@ -51,12 +51,14 @@ void VulkanRenderer::initVulkan() {
     createRenderPass();
     createDescriptorSetLayout();
     createGraphicsPipeline();
-    createGrid(); // <-- Create grid data
-    createGridPipeline(); // <-- Create grid pipeline
+    createGrid();
+    createGridPipeline();
     createFramebuffers();
     createUniformBuffers();
     createDescriptorPool();
+    createGridDescriptorPool(); // <-- Add this
     createDescriptorSets();
+    createGridDescriptorSets(); // <-- Add this
     createCommandPool();
     createCommandBuffers();
     createSyncObjects();
