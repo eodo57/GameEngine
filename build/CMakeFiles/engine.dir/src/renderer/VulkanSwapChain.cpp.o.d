@@ -209,7 +209,8 @@ CMakeFiles/engine.dir/src/renderer/VulkanSwapChain.cpp.o: \
  /usr/include/c++/15.2.1/pstl/execution_defs.h \
  /home/efraino/Documents/Projects/GameEngine/src/renderer/VulkanDevice.h \
  /home/efraino/Documents/Projects/GameEngine/src/renderer/../core/Window.h \
- /usr/include/c++/15.2.1/optional \
+ /usr/include/GLFW/glfw3.h /usr/include/GL/gl.h /usr/include/GL/glext.h \
+ /usr/include/KHR/khrplatform.h /usr/include/c++/15.2.1/optional \
  /usr/include/c++/15.2.1/bits/enable_special_members.h \
  /home/efraino/Documents/Projects/GameEngine/src/renderer/../core/Logger.h \
  /usr/include/c++/15.2.1/sstream /usr/include/c++/15.2.1/istream \

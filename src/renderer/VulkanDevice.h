@@ -40,6 +40,12 @@ public:
 
     QueueFamilyIndices getQueueFamilyIndices() { return findQueueFamilies(physicalDevice_); }
     SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
+    void createBuffer(
+    VkDeviceSize size,
+    VkBufferUsageFlags usage,
+    VkMemoryPropertyFlags properties,
+    VkBuffer& buffer,
+    VkDeviceMemory& bufferMemory);
     
 private:
     void createInstance();

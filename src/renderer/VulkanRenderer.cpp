@@ -2,9 +2,8 @@
 #include "../scene/GameObject.h"
 #include "../core/Window.h"
 #include "../core/Logger.h"
-
+#include <cstring>
 #include <stdexcept>
-#include <array>
 #include <chrono>
 #include <fstream>
 #include <algorithm>
@@ -345,9 +344,9 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
     
     vkCmdBindDescriptorSets(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, 1, &descriptorSets[imageIndex], 0, nullptr);
     
-    if(gameObject.model) {
-        gameObject.model->bind(commandBuffers[currentFrame]);
-        gameObject.model->draw(commandBuffers[currentFrame]);
+    if(gameObject.mesh) {
+        gameObject.mesh->bind(commandBuffers[currentFrame]);
+        gameObject.mesh->draw(commandBuffers[currentFrame]);
     }
 
     vkCmdEndRenderPass(commandBuffers[currentFrame]);

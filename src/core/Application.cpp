@@ -3,9 +3,7 @@
 #include "../renderer/VulkanRenderer.h"
 #include "../renderer/Model.h" // Include Model for loading
 #include "Logger.h"
-
 #include <GLFW/glfw3.h>
-#include <stdexcept>
 
 Application::Application() {
     window = std::make_unique<Window>(WIDTH, HEIGHT, "Vulkan Engine");
@@ -19,7 +17,7 @@ void Application::loadGameObjects() {
     std::shared_ptr<Model> model = std::make_shared<Model>(vulkanRenderer->getDevice(), "models/smooth_vase.obj");
     
     auto vase = GameObject::createGameObject();
-    vase.model = model;
+    vase.mesh = model;
     vase.transform.translation = {0.f, 0.f, 2.5f};
     vase.transform.scale = {3.f, 3.f, 3.f};
     gameObjects.push_back(std::move(vase));
