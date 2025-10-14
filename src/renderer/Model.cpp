@@ -1,3 +1,4 @@
+#define TINYOBJLOADER_IMPLEMENTATION
 #include "Model.h"
 #include <tiny_obj_loader.h>
 //#include <iostream>

@@ -1,5 +1,5 @@
 // Define this macro BEFORE including glfw3.h to include Vulkan headers
-#define GLFW_INCLUDE_VULKAN // <-- FIX: Changed 'Vulkan' to 'VULKAN'
+//#define GLFW_INCLUDE_VULKAN // <-- FIX: Changed 'Vulkan' to 'VULKAN'
 #include <GLFW/glfw3.h>
 
 #include "Window.h"
