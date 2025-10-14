@@ -1,27 +1,36 @@
 #include "Application.h"
 #include "Window.h"
 #include "../renderer/VulkanRenderer.h"
-#include "../renderer/Model.h" // Correct path to Model.h
+#include "../renderer/Model.h" // Include Model for loading
 #include "Logger.h"
+
 #include <GLFW/glfw3.h>
-#include <memory>
+#include <stdexcept>
 
 Application::Application() {
     window = std::make_unique<Window>(WIDTH, HEIGHT, "Vulkan Engine");
     vulkanRenderer = std::make_unique<VulkanRenderer>(*window);
-
-    // FIX: Removed the incorrect '*' dereference operator
-    model = std::make_unique<Model>(vulkanRenderer->getDevice(), "models/smooth_vase.obj");
+    loadGameObjects();
 }
 
 Application::~Application() {}
+
+void Application::loadGameObjects() {
+    std::shared_ptr<Model> model = std::make_shared<Model>(vulkanRenderer->getDevice(), "models/smooth_vase.obj");
+    
+    auto vase = GameObject::createGameObject();
+    vase.model = model;
+    vase.transform.translation = {0.f, 0.f, 2.5f};
+    vase.transform.scale = {3.f, 3.f, 3.f};
+    gameObjects.push_back(std::move(vase));
+}
 
 void Application::run() {
     Logger::info("Application starting...");
 
     while (!window->shouldClose()) {
         glfwPollEvents();
-        vulkanRenderer->drawFrame(*model);
+        vulkanRenderer->drawFrame(gameObjects[0]); // Pass the first game object
     }
 
     vulkanRenderer->waitIdle();

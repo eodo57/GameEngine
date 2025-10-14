@@ -1,13 +1,12 @@
 #pragma once
 
-#include "VulkanDevice.h" // Include the full device header
+#include "VulkanDevice.h"
+#include "Camera.h" // <-- Include camera
 #include <memory>
-#include <string>
 #include <vector>
 
-// Forward declarations are a good practice to reduce compile times
 class Window;
-class Model;
+class GameObject; // <-- Forward-declare GameObject
 
 class VulkanRenderer {
 public:
@@ -18,14 +17,22 @@ public:
     VulkanRenderer& operator=(const VulkanRenderer&) = delete;
 
     VulkanDevice& getDevice() const { return *vulkanDevice; }
-    void drawFrame(Model& model);
+    void drawFrame(GameObject& gameObject); // <-- Updated signature
     void waitIdle() const;
 
 private:
     void initVulkan();
     void cleanup();
-
-    // Helper functions specific to the renderer
+    void cleanupSwapChain();
+    
+    // UBO and Descriptor Set functions
+    void createDescriptorSetLayout();
+    void createUniformBuffers();
+    void createDescriptorPool();
+    void createDescriptorSets();
+    void updateUniformBuffer(uint32_t currentImage, GameObject& gameObject);
+    
+    // Existing helper functions
     void createSwapChain();
     void createImageViews();
     void createRenderPass();
@@ -34,7 +41,6 @@ private:
     void createCommandPool();
     void createCommandBuffers();
     void createSyncObjects();
-    void cleanupSwapChain();
 
     SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
     VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
@@ -45,11 +51,23 @@ private:
     VkShaderModule createShaderModule(const std::vector<char>& code);
 
     Window& window;
-
-    // --- Renderer now owns the VulkanDevice ---
     std::unique_ptr<VulkanDevice> vulkanDevice;
     
-    // Swap Chain and Pipeline resources
+    // --- NEW UBO and Descriptor members ---
+    struct UniformBufferObject {
+        glm::mat4 model;
+        glm::mat4 view;
+        glm::mat4 proj;
+    };
+
+    std::vector<VkBuffer> uniformBuffers;
+    std::vector<VkDeviceMemory> uniformBuffersMemory;
+    VkDescriptorSetLayout descriptorSetLayout;
+    VkDescriptorPool descriptorPool;
+    std::vector<VkDescriptorSet> descriptorSets;
+    Camera camera{}; // <-- Add a camera object
+    
+    // Existing members
     VkSwapchainKHR swapChain;
     std::vector<VkImage> swapChainImages;
     VkFormat swapChainImageFormat;
@@ -62,7 +80,6 @@ private:
     VkCommandPool commandPool;
     std::vector<VkCommandBuffer> commandBuffers;
     
-    // Synchronization objects
     std::vector<VkSemaphore> imageAvailableSemaphores;
     std::vector<VkSemaphore> renderFinishedSemaphores;
     std::vector<VkFence> inFlightFences;
