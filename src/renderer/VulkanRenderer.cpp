@@ -2,12 +2,11 @@
 #include "Model.h"
 #include "../core/Window.h"
 #include "../core/Logger.h"
-#include <cstring>
+#include <GLFW/glfw3.h>
 #include <stdexcept>
 #include <vector>
 #include <fstream>
-#include <algorithm> // <-- ADD THIS LINE for std::clamp
-#include <GLFW/glfw3.h>   // <-- ADD THIS LINE for glfwGetFramebufferSize
+#include <algorithm> // Required for std::clamp
 
 VulkanRenderer::VulkanRenderer(Window& appWindow) : window(appWindow) {
     vulkanDevice = std::make_unique<VulkanDevice>(window);
@@ -40,7 +39,7 @@ void VulkanRenderer::cleanup() {
         vkDestroyFence(vulkanDevice->device(), inFlightFences[i], nullptr);
     }
 
-    vkDestroyCommandPool(vulkanDevice->device(), commandPool, nullptr);
+    // Command pool is owned by VulkanDevice, so it's cleaned up there.
 }
 
 void VulkanRenderer::cleanupSwapChain() {
