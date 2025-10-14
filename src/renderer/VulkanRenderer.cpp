@@ -64,7 +64,6 @@ void VulkanRenderer::initVulkan() {
 }
 
 void VulkanRenderer::cleanup() {
-    // Wait for the device to be idle before cleaning up
     vkDeviceWaitIdle(vulkanDevice->device());
 
     cleanupSwapChain();
@@ -74,6 +73,7 @@ void VulkanRenderer::cleanup() {
     vkDestroyPipelineLayout(vulkanDevice->device(), gridPipelineLayout, nullptr);
     vkDestroyBuffer(vulkanDevice->device(), gridVertexBuffer, nullptr);
     vkFreeMemory(vulkanDevice->device(), gridVertexBufferMemory, nullptr);
+    vkDestroyDescriptorPool(vulkanDevice->device(), gridDescriptorPool, nullptr); // <-- Add this line
 
 
     // Cleanup UBO resources
@@ -296,16 +296,17 @@ void VulkanRenderer::drawFrame(GameObject& gameObject) {
 
     vkCmdBeginRenderPass(commandBuffers[currentFrame], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
     
-    // --- Draw the Grid ---
+     // --- Draw the Grid (THIS IS THE KEY CHANGE) ---
     vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, gridPipeline);
-    vkCmdBindDescriptorSets(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, gridPipelineLayout, 0, 1, &descriptorSets[imageIndex], 0, nullptr);
+    // Bind the NEW, DEDICATED grid descriptor set
+    vkCmdBindDescriptorSets(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, gridPipelineLayout, 0, 1, &gridDescriptorSets[imageIndex], 0, nullptr);
     VkBuffer gridVertexBuffers[] = {gridVertexBuffer};
     VkDeviceSize offsets[] = {0};
     vkCmdBindVertexBuffers(commandBuffers[currentFrame], 0, 1, gridVertexBuffers, offsets);
     vkCmdDraw(commandBuffers[currentFrame], gridVertexCount, 1, 0, 0);
 
 
-    // --- Draw the Game Object ---
+    // --- Draw the Game Object (uses its original descriptor set) ---
     vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
     vkCmdBindDescriptorSets(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, 1, &descriptorSets[imageIndex], 0, nullptr);
     
@@ -764,7 +765,21 @@ void VulkanRenderer::createDescriptorPool() {
         throw std::runtime_error("failed to create descriptor pool!");
     }
 }
+void VulkanRenderer::createGridDescriptorPool() {
+    VkDescriptorPoolSize poolSize{};
+    poolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    poolSize.descriptorCount = static_cast<uint32_t>(swapChainImages.size());
 
+    VkDescriptorPoolCreateInfo poolInfo{};
+    poolInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
+    poolInfo.poolSizeCount = 1;
+    poolInfo.pPoolSizes = &poolSize;
+    poolInfo.maxSets = static_cast<uint32_t>(swapChainImages.size());
+
+    if (vkCreateDescriptorPool(vulkanDevice->device(), &poolInfo, nullptr, &gridDescriptorPool) != VK_SUCCESS) {
+        throw std::runtime_error("failed to create grid descriptor pool!");
+    }
+}
 void VulkanRenderer::createDescriptorSets() {
     std::vector<VkDescriptorSetLayout> layouts(swapChainImages.size(), descriptorSetLayout);
     VkDescriptorSetAllocateInfo allocInfo{};
@@ -787,6 +802,38 @@ void VulkanRenderer::createDescriptorSets() {
         VkWriteDescriptorSet descriptorWrite{};
         descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
         descriptorWrite.dstSet = descriptorSets[i];
+        descriptorWrite.dstBinding = 0;
+        descriptorWrite.dstArrayElement = 0;
+        descriptorWrite.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+        descriptorWrite.descriptorCount = 1;
+        descriptorWrite.pBufferInfo = &bufferInfo;
+
+        vkUpdateDescriptorSets(vulkanDevice->device(), 1, &descriptorWrite, 0, nullptr);
+    }
+}
+
+void VulkanRenderer::createGridDescriptorSets() {
+    std::vector<VkDescriptorSetLayout> layouts(swapChainImages.size(), descriptorSetLayout);
+    VkDescriptorSetAllocateInfo allocInfo{};
+    allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
+    allocInfo.descriptorPool = gridDescriptorPool; // Use the new grid pool
+    allocInfo.descriptorSetCount = static_cast<uint32_t>(swapChainImages.size());
+    allocInfo.pSetLayouts = layouts.data();
+
+    gridDescriptorSets.resize(swapChainImages.size());
+    if (vkAllocateDescriptorSets(vulkanDevice->device(), &allocInfo, gridDescriptorSets.data()) != VK_SUCCESS) {
+        throw std::runtime_error("failed to allocate grid descriptor sets!");
+    }
+
+    for (size_t i = 0; i < swapChainImages.size(); i++) {
+        VkDescriptorBufferInfo bufferInfo{};
+        bufferInfo.buffer = uniformBuffers[i]; // Still points to the same uniform buffer
+        bufferInfo.offset = 0;
+        bufferInfo.range = sizeof(UniformBufferObject);
+
+        VkWriteDescriptorSet descriptorWrite{};
+        descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+        descriptorWrite.dstSet = gridDescriptorSets[i]; // Use the new grid descriptor set
         descriptorWrite.dstBinding = 0;
         descriptorWrite.dstArrayElement = 0;
         descriptorWrite.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;

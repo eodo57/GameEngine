@@ -36,7 +36,10 @@ private:
     void createGrid();
     void createGridPipeline();
     void updateUniformBuffer(uint32_t currentImage, GameObject& gameObject);
-    
+    void createGridDescriptorPool();
+    void createGridDescriptorSets();
+    VkDescriptorPool gridDescriptorPool;
+    std::vector<VkDescriptorSet> gridDescriptorSets;
     // Existing helper functions
 private:
     void createSwapChain();
@@ -57,7 +60,6 @@ private:
     VkBuffer gridVertexBuffer;
     VkDeviceMemory gridVertexBufferMemory;
 
-    std::vector<VkDescriptorSet> gridDescriptorSets;
     uint32_t gridVertexCount;
     
     static std::vector<char> readFile(const std::string& filename);
