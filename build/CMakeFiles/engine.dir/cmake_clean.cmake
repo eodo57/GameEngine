@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/link.d"
   "CMakeFiles/engine.dir/src/core/Application.cpp.o"
   "CMakeFiles/engine.dir/src/core/Application.cpp.o.d"
+  "CMakeFiles/engine.dir/src/core/CameraController.cpp.o"
+  "CMakeFiles/engine.dir/src/core/CameraController.cpp.o.d"
   "CMakeFiles/engine.dir/src/core/Logger.cpp.o"
   "CMakeFiles/engine.dir/src/core/Logger.cpp.o.d"
   "CMakeFiles/engine.dir/src/core/Window.cpp.o"

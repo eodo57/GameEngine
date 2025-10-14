@@ -150,7 +150,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=MyGameEngine
+CMAKE_PROJECT_NAME:STATIC=GameEngine
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -216,6 +216,15 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // during the make.  This is useful for debugging only. With Visual
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
+
+//Value Computed by CMake
+GameEngine_BINARY_DIR:STATIC=/home/efraino/Documents/Projects/GameEngine/build
+
+//Value Computed by CMake
+GameEngine_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+GameEngine_SOURCE_DIR:STATIC=/home/efraino/Documents/Projects/GameEngine
 
 //Value Computed by CMake
 MyGameEngine_BINARY_DIR:STATIC=/home/efraino/Documents/Projects/GameEngine/build
@@ -456,7 +465,7 @@ Vulkan_GLSLC_EXECUTABLE-ADVANCED:INTERNAL=1
 Vulkan_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Vulkan_LIBRARY
 Vulkan_LIBRARY-ADVANCED:INTERNAL=1
-__pkg_config_arguments_GLFW:INTERNAL=REQUIRED;IMPORTED_TARGET;glfw3
+__pkg_config_arguments_GLFW:INTERNAL=REQUIRED;glfw3
 __pkg_config_checked_GLFW:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_GLFW_glfw
 pkgcfg_lib_GLFW_glfw-ADVANCED:INTERNAL=1

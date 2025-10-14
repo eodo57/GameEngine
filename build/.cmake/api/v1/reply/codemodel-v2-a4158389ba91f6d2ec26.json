@@ -9,13 +9,14 @@
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.20"
+						"string" : "4.1.2"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -27,10 +28,11 @@
 					[
 						0
 					],
-					"name" : "MyGameEngine",
+					"name" : "GameEngine",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -38,8 +40,15 @@
 			[
 				{
 					"directoryIndex" : 0,
+					"id" : "Shaders::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Shaders-Debug-76f3bfb5c23beca8e780.json",
+					"name" : "Shaders",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "engine::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-engine-Debug-3f672ff56055e50b6111.json",
+					"jsonFile" : "target-engine-Debug-2e6e9c7f360a0cb84fd8.json",
 					"name" : "engine",
 					"projectIndex" : 0
 				}

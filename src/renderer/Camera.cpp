@@ -30,6 +30,7 @@ void Camera::setViewDirection(glm::vec3 position, glm::vec3 direction, glm::vec3
 }
 
 void Camera::setViewTarget(glm::vec3 position, glm::vec3 target, glm::vec3 up) {
+    this->position = position; // Add this line
     viewMatrix = glm::lookAt(position, target, up);
 }
 

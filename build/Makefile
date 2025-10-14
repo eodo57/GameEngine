@@ -92,6 +92,13 @@ all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/efraino/Documents/Projects/GameEngine/build/CMakeFiles 0
 .PHONY : all
 
+# The main codegen target
+codegen: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/efraino/Documents/Projects/GameEngine/build/CMakeFiles /home/efraino/Documents/Projects/GameEngine/build//CMakeFiles/progress.marks
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 codegen
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/efraino/Documents/Projects/GameEngine/build/CMakeFiles 0
+.PHONY : codegen
+
 # The main clean target
 clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
@@ -129,6 +136,19 @@ engine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/build
 .PHONY : engine/fast
 
+#=============================================================================
+# Target rules for targets named Shaders
+
+# Build rule for target.
+Shaders: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Shaders
+.PHONY : Shaders
+
+# fast build rule for target.
+Shaders/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shaders.dir/build.make CMakeFiles/Shaders.dir/build
+.PHONY : Shaders/fast
+
 src/core/Application.o: src/core/Application.cpp.o
 .PHONY : src/core/Application.o
 
@@ -152,6 +172,30 @@ src/core/Application.s: src/core/Application.cpp.s
 src/core/Application.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/Application.cpp.s
 .PHONY : src/core/Application.cpp.s
+
+src/core/CameraController.o: src/core/CameraController.cpp.o
+.PHONY : src/core/CameraController.o
+
+# target to build an object file
+src/core/CameraController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/CameraController.cpp.o
+.PHONY : src/core/CameraController.cpp.o
+
+src/core/CameraController.i: src/core/CameraController.cpp.i
+.PHONY : src/core/CameraController.i
+
+# target to preprocess a source file
+src/core/CameraController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/CameraController.cpp.i
+.PHONY : src/core/CameraController.cpp.i
+
+src/core/CameraController.s: src/core/CameraController.cpp.s
+.PHONY : src/core/CameraController.s
+
+# target to generate assembly for a file
+src/core/CameraController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/core/CameraController.cpp.s
+.PHONY : src/core/CameraController.cpp.s
 
 src/core/Logger.o: src/core/Logger.cpp.o
 .PHONY : src/core/Logger.o
@@ -423,12 +467,17 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... codegen"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... Shaders"
 	@echo "... engine"
 	@echo "... src/core/Application.o"
 	@echo "... src/core/Application.i"
 	@echo "... src/core/Application.s"
+	@echo "... src/core/CameraController.o"
+	@echo "... src/core/CameraController.i"
+	@echo "... src/core/CameraController.s"
 	@echo "... src/core/Logger.o"
 	@echo "... src/core/Logger.i"
 	@echo "... src/core/Logger.s"

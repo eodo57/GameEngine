@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/efraino/Documents/Projects/GameEngine/src/core/Application.cpp" "CMakeFiles/engine.dir/src/core/Application.cpp.o" "gcc" "CMakeFiles/engine.dir/src/core/Application.cpp.o.d"
+  "/home/efraino/Documents/Projects/GameEngine/src/core/CameraController.cpp" "CMakeFiles/engine.dir/src/core/CameraController.cpp.o" "gcc" "CMakeFiles/engine.dir/src/core/CameraController.cpp.o.d"
   "/home/efraino/Documents/Projects/GameEngine/src/core/Logger.cpp" "CMakeFiles/engine.dir/src/core/Logger.cpp.o" "gcc" "CMakeFiles/engine.dir/src/core/Logger.cpp.o.d"
   "/home/efraino/Documents/Projects/GameEngine/src/core/Window.cpp" "CMakeFiles/engine.dir/src/core/Window.cpp.o" "gcc" "CMakeFiles/engine.dir/src/core/Window.cpp.o.d"
   "/home/efraino/Documents/Projects/GameEngine/src/main.cpp" "CMakeFiles/engine.dir/src/main.cpp.o" "gcc" "CMakeFiles/engine.dir/src/main.cpp.o.d"

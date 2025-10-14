@@ -149,24 +149,15 @@ void VulkanRenderer::createDescriptorSets() {
 }
 
 void VulkanRenderer::updateUniformBuffer(uint32_t currentImage, GameObject& gameObject) {
-    static auto startTime = std::chrono::high_resolution_clock::now();
-    auto currentTime = std::chrono::high_resolution_clock::now();
-    float time = std::chrono::duration<float, std::chrono::seconds::period>(currentTime - startTime).count();
+    // REMOVE the old time-based animation logic
+    // static auto startTime = ...
+    // ... all the old camera and object rotation logic should be deleted ...
     
-    // Rotate object over time on its Y-axis
-    gameObject.transform.rotation.y = glm::mod(time * 0.5f, glm::two_pi<float>());
+    // The camera is now controlled externally, so we just update the projection matrix
+    camera.setPerspectiveProjection(glm::radians(45.f), swapChainExtent.width / (float) swapChainExtent.height, 0.1f, 100.f);
 
     UniformBufferObject ubo{};
     ubo.model = gameObject.transform.mat4();
-    
-    // Simple orbiting camera looking at the game object
-    float radius = 5.0f;
-    float camX = sin(time * 0.1f) * radius;
-    float camZ = cos(time * 0.1f) * radius;
-    
-    camera.setViewTarget(glm::vec3(camX, -2.0f, camZ), gameObject.transform.translation, glm::vec3(0.0f, -1.0f, 0.0f));
-    camera.setPerspectiveProjection(glm::radians(45.f), swapChainExtent.width / (float) swapChainExtent.height, 0.1f, 100.f);
-
     ubo.view = camera.getView();
     ubo.proj = camera.getProjection();
 

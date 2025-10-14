@@ -883,7 +883,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "MyGameEngine"
+			"value" : "GameEngine"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1626,6 +1626,42 @@
 			"value" : ""
 		},
 		{
+			"name" : "GameEngine_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/efraino/Documents/Projects/GameEngine/build"
+		},
+		{
+			"name" : "GameEngine_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "GameEngine_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/efraino/Documents/Projects/GameEngine"
+		},
+		{
 			"name" : "MyGameEngine_BINARY_DIR",
 			"properties" : 
 			[
@@ -1767,7 +1803,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "REQUIRED;IMPORTED_TARGET;glfw3"
+			"value" : "REQUIRED;glfw3"
 		},
 		{
 			"name" : "__pkg_config_checked_GLFW",

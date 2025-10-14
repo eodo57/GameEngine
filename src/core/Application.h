@@ -1,5 +1,5 @@
 #pragma once
-
+#include "CameraController.h"
 #include "../scene/GameObject.h"
 #include <memory>
 
@@ -25,4 +25,6 @@ private:
     std::unique_ptr<Window> window;
     std::unique_ptr<VulkanRenderer> vulkanRenderer;
     std::vector<GameObject> gameObjects;
+    std::unique_ptr<CameraController> cameraController;
+    float lastFrameTime = 0.f;
 };

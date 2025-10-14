@@ -9,6 +9,11 @@
 Application::Application() {
     window = std::make_unique<Window>(WIDTH, HEIGHT, "Vulkan Engine");
     vulkanRenderer = std::make_unique<VulkanRenderer>(*window);
+
+    // Create and connect the camera controller
+    cameraController = std::make_unique<CameraController>(vulkanRenderer->getCamera());
+    cameraController->connectWindow(*window);
+
     loadGameObjects();
 }
 
@@ -29,6 +34,15 @@ void Application::run() {
 
     while (!window->shouldClose()) {
         glfwPollEvents();
+
+                // Calculate delta time
+        float currentTime = static_cast<float>(glfwGetTime());
+        float deltaTime = currentTime - lastFrameTime;
+        lastFrameTime = currentTime;
+
+        // Update the camera
+        cameraController->update(deltaTime);
+        
         vulkanRenderer->drawFrame(gameObjects[0]);
     }
 
